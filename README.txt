@@ -1,0 +1,1 @@
+A small project to practice excel integration using EPPlus. The project serves as an easier to use utility tool to generate monthly bacteriology reports and export it to excel.
