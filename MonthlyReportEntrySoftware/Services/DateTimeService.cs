@@ -28,7 +28,7 @@ namespace MonthlyReportEntrySoftware.Services
         public static string GetMonthFromCode(int code)
         {
             if (code < 1 || code > 12) throw new IndexOutOfRangeException("Invalid Month Code!");
-            return Months[code];
+            return Months[code-1];
         }
 
         public static int GetMonthCodeFromString(string month)

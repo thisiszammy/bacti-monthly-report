@@ -69,30 +69,42 @@ namespace MonthlyReportEntrySoftware
         private void btnLoadFromFile_Click(object sender, EventArgs e)
         {
             MonthlyReportEntity monthlyReportEntity = new MonthlyReportEntity();
-
-            using(OpenFileDialog openFileDialog = new OpenFileDialog())
+            try
             {
-                openFileDialog.InitialDirectory = "C:\\";
-                openFileDialog.Filter = "*.xls|*.xlsx";
-                openFileDialog.FilterIndex = 2;
-                openFileDialog.RestoreDirectory = true;
-
-                if(openFileDialog.ShowDialog() == DialogResult.OK)
+                using (OpenFileDialog openFileDialog = new OpenFileDialog())
                 {
-                    FileInfo fileInfo = new FileInfo(openFileDialog.FileName);
-                    monthlyReportEntity.FileName = fileInfo.Name;
-                    monthlyReportEntity.FilePath = fileInfo.DirectoryName;
+                    openFileDialog.InitialDirectory = "C:\\";
+                    openFileDialog.Filter = "*.xls|*.xlsx";
+                    openFileDialog.FilterIndex = 2;
+                    openFileDialog.RestoreDirectory = true;
+
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        FileInfo fileInfo = new FileInfo(openFileDialog.FileName);
+                        monthlyReportEntity.FileName = fileInfo.Name;
+                        monthlyReportEntity.FilePath = fileInfo.DirectoryName;
+                        applicationSettings.SavePath = fileInfo.DirectoryName;
+
+
+                        ReportGeneratorService.LoadFromExcelFile(monthlyReportEntity);
+
+                        FrmMonthlyReport frmMonthlyReport = new FrmMonthlyReport(applicationSettings, monthlyReportEntity);
+                        frmMonthlyReport.StartPosition = FormStartPosition.CenterScreen;
+                        frmMonthlyReport.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please Select Excel File!");
+                    }
 
                 }
-
             }
-
-            ReportGeneratorService.LoadFromExcelFile(monthlyReportEntity);
-
-            FrmMonthlyReport frmMonthlyReport = new FrmMonthlyReport(applicationSettings, monthlyReportEntity);
-            frmMonthlyReport.StartPosition = FormStartPosition.CenterScreen;
-            frmMonthlyReport.Show();
-            this.Hide();
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
 
         }
     }

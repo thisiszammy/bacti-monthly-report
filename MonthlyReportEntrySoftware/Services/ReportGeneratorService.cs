@@ -805,7 +805,7 @@ namespace MonthlyReportEntrySoftware.Services
             sheet.Cells["A4:C4"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
 
             sheet.Cells["A5:C5"].Merge = true;
-            sheet.Cells["A5:C5"].Value = "Total Specimen Received";
+            sheet.Cells["A5:C5"].Value = "Total Specimen Performed";
             sheet.Cells["A5:C5"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
 
             sheet.Cells["A22:C23,A39:C40,A50:C51"].Style.Font.Bold = true;
@@ -1013,7 +1013,7 @@ namespace MonthlyReportEntrySoftware.Services
             refRow = 84;
 
             sheet.Cells[$"A50:C51"].Merge = true;
-            sheet.Cells[$"A50:C51"].Value = "GRAM STAINING";
+            sheet.Cells[$"A50:C51"].Value = "";
             sheet.Cells[$"A50:C51"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
 
             aggregateSpecimen = monthlyReportEntity.TestTallies[1].Skip(3).Select(x => x.CategoryName).ToList();
@@ -1046,6 +1046,67 @@ namespace MonthlyReportEntrySoftware.Services
 
 
             #endregion  
+
+            sheet.Cells["J1:J100"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+            sheet.Cells["J3"].Value = "TAT";
+
+            sheet.Cells["J8"].Value = "TAT AFB";
+            sheet.Cells["I9"].Value="IP";
+            sheet.Cells["I10"].Value = "ER";
+            sheet.Cells["I11"].Value = "MAGS";
+            sheet.Cells["I12"].Value = "OPD";
+
+
+            sheet.Cells["J23"].Value = "TAT GS";
+            sheet.Cells["I24"].Value = "IP";
+            sheet.Cells["I25"].Value = "ER";
+            sheet.Cells["I26"].Value = "MAGS";
+            sheet.Cells["I27"].Value = "OPD";
+
+
+            sheet.Cells["J40"].Value = "TAT CS";
+            sheet.Cells["I41"].Value = "IP";
+            sheet.Cells["I42"].Value = "ER";
+            sheet.Cells["I43"].Value = "MAGS";
+            sheet.Cells["I44"].Value = "OPD";
+
+
+            sheet.Cells["J51"].Value = "TAT HUMAN MILK CULTURE";
+            sheet.Cells["I52"].Value = "IP";
+
+            sheet.Cells["J53"].Value = "TAT GEN X";
+            sheet.Cells["I54"].Value = "IP";
+            sheet.Cells["I55"].Value = "ER";
+            sheet.Cells["I56"].Value = "MAGS";
+            sheet.Cells["I57"].Value = "OPD";
+            sheet.Cells["I1:I100"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+
+
+
+            sheet.Cells["J58"].Value = "TAT KOH";
+            sheet.Cells["I59"].Value = "IP";
+            sheet.Cells["I60"].Value = "ER";
+            sheet.Cells["I61"].Value = "MAGS";
+            sheet.Cells["I62"].Value = "OPD";
+
+
+
+            sheet.Cells["J63"].Value = "TAT INDIA INK";
+            sheet.Cells["I64"].Value = "IP";
+            sheet.Cells["I65"].Value = "ER";
+            sheet.Cells["I66"].Value = "MAGS";
+            sheet.Cells["I67"].Value = "OPD";
+
+            sheet.Cells["J3"].Style.Font.Bold = true;
+            sheet.Cells["J8"].Style.Font.Bold = true;
+            sheet.Cells["J23"].Style.Font.Bold = true;
+            sheet.Cells["J40"].Style.Font.Bold = true;
+            sheet.Cells["J51"].Style.Font.Bold = true;
+            sheet.Cells["J53"].Style.Font.Bold = true;
+            sheet.Cells["J58"].Style.Font.Bold = true;
+            sheet.Cells["J63"].Style.Font.Bold = true;
+
+
             sheet.Calculate();
         }
 
