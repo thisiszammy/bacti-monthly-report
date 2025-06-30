@@ -155,7 +155,21 @@ namespace MonthlyReportEntrySoftware
             categoryTallies = tallies.CategoryTallies;
             foreach(var item in tallies.CategoryTallies)
             {
-                gridTallies.Rows.Add(item.SpecimenType, item.IP, item.ER, item.MAGS, item.OPD, item.Total);
+
+                if (item.IsHeader)
+                {
+                    int rowIndex = gridTallies.Rows.Add(item.SpecimenType, null, null, null, null, null);
+
+                    gridTallies.Rows[rowIndex].ReadOnly = true;
+
+                    gridTallies.Rows[rowIndex].DefaultCellStyle.BackColor = Color.Yellow;
+                    gridTallies.Rows[rowIndex].DefaultCellStyle.ForeColor = Color.Red;
+                    gridTallies.Rows[rowIndex].DefaultCellStyle.Font = new Font(gridTallies.Font, FontStyle.Bold);
+                }
+                else
+                {
+                    gridTallies.Rows.Add(item.SpecimenType, item.IP, item.ER, item.MAGS, item.OPD, item.Total);
+                }
             }
 
         }

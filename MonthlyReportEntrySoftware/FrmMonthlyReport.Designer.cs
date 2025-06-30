@@ -91,7 +91,7 @@ namespace MonthlyReportEntrySoftware
             // 
             this.txtMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.txtMonth.FormattingEnabled = true;
-            this.txtMonth.Location = new System.Drawing.Point(58, 52);
+            this.txtMonth.Location = new System.Drawing.Point(58, 59);
             this.txtMonth.Name = "txtMonth";
             this.txtMonth.Size = new System.Drawing.Size(169, 21);
             this.txtMonth.TabIndex = 3;
@@ -229,6 +229,9 @@ namespace MonthlyReportEntrySoftware
             this.gridTallies.AllowUserToDeleteRows = false;
             this.gridTallies.AllowUserToResizeColumns = false;
             this.gridTallies.AllowUserToResizeRows = false;
+            this.gridTallies.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gridTallies.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gridTallies.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridTallies.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -242,7 +245,7 @@ namespace MonthlyReportEntrySoftware
             this.gridTallies.MultiSelect = false;
             this.gridTallies.Name = "gridTallies";
             this.gridTallies.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.gridTallies.Size = new System.Drawing.Size(517, 531);
+            this.gridTallies.Size = new System.Drawing.Size(517, 533);
             this.gridTallies.TabIndex = 6;
             this.gridTallies.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridTallies_CellValueChanged);
             this.gridTallies.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridTallies_KeyDown);
@@ -297,6 +300,8 @@ namespace MonthlyReportEntrySoftware
             // 
             // panel2
             // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.gridTallies);
             this.panel2.Location = new System.Drawing.Point(700, 14);

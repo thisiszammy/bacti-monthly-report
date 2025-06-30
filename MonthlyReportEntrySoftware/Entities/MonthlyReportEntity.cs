@@ -53,7 +53,8 @@ namespace MonthlyReportEntrySoftware.Entities
                 new TestCategory(TestEnum.HM),
                 new TestCategory(TestEnum.GE),
                 new TestCategory(TestEnum.KOH),
-                new TestCategory(TestEnum.INDIA)
+                new TestCategory(TestEnum.INDIA),
+                new TestCategory(TestEnum.XDR)
             });
 
             TestTallies.Add(2, new List<TestCategory>
@@ -64,7 +65,8 @@ namespace MonthlyReportEntrySoftware.Entities
                 new TestCategory(TestEnum.HM),
                 new TestCategory(TestEnum.GE),
                 new TestCategory(TestEnum.KOH),
-                new TestCategory(TestEnum.INDIA)
+                new TestCategory(TestEnum.INDIA),
+                new TestCategory(TestEnum.XDR)
             });
 
             TestTallies.Add(3, new List<TestCategory>
@@ -75,7 +77,8 @@ namespace MonthlyReportEntrySoftware.Entities
                 new TestCategory(TestEnum.HM),
                 new TestCategory(TestEnum.GE),
                 new TestCategory(TestEnum.KOH),
-                new TestCategory(TestEnum.INDIA)
+                new TestCategory(TestEnum.INDIA),
+                new TestCategory(TestEnum.XDR)
             });
 
             TestTallies.Add(4, new List<TestCategory>
@@ -86,7 +89,8 @@ namespace MonthlyReportEntrySoftware.Entities
                 new TestCategory(TestEnum.HM),
                 new TestCategory(TestEnum.GE),
                 new TestCategory(TestEnum.KOH),
-                new TestCategory(TestEnum.INDIA)
+                new TestCategory(TestEnum.INDIA),
+                new TestCategory(TestEnum.XDR)
             });
 
         }

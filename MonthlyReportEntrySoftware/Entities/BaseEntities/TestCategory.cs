@@ -31,12 +31,14 @@ namespace MonthlyReportEntrySoftware.Entities.BaseEntities
                         new CategoryTally("SPUTUM"),
                         new CategoryTally("URINE SEDIMENTS"),
                         new CategoryTally("STOOL"),
+                        new CategoryTally("BILE"),
+                        new CategoryTally("OTHERS:", true),
                         new CategoryTally("WOUND"),
                         new CategoryTally("UVC TIP/NG TTIP"),
-                        new CategoryTally("ABSCESS"),
                         new CategoryTally("TISSUE"),
-                        new CategoryTally("TA"),
-                        new CategoryTally("ASPIRATE & FLUIDS")
+                        new CategoryTally("ENDOTRACHEAL ASPIRATE"),
+                        new CategoryTally("EXUDATES"),
+                        new CategoryTally("THROAT SWAB")
                     };
                     break;
                 case TestEnum.GS:
@@ -46,39 +48,57 @@ namespace MonthlyReportEntrySoftware.Entities.BaseEntities
                         new CategoryTally("ASCITIC FLUID"),
                         new CategoryTally("CSF"),
                         new CategoryTally("EAR DISCHARGE"),
-                        new CategoryTally("PLEURAL/PERITONEAL FLUID"),
+                        new CategoryTally("PLEURAL FLUID"),
+                        new CategoryTally("PERITONEAL FLUID"),
+                        new CategoryTally("BILE"),
+                        new CategoryTally("SYNOVIAL"),
                         new CategoryTally("PERICARDIAL FLUID"),
-                        new CategoryTally("SKIN LESIONS"),
+                        new CategoryTally("PANCREATIC FLUID"),
                         new CategoryTally("SPUTUM"),
                         new CategoryTally("THROAT SWAB"),
                         new CategoryTally("URETHRAL SMEAR/PENILE SMEAR"),
                         new CategoryTally("URINE"),
-                        new CategoryTally("VAGINAL SMEAR"),
+                        new CategoryTally("VAGINAL DISCHARGE/RECTOVAGINAL"),
+                        new CategoryTally("TISSUE/MASS"),
                         new CategoryTally("WOUND DISCHARGE/ABSCESS"),
                         new CategoryTally("ETA"),
-                        new CategoryTally("OTHERS")
+                        new CategoryTally("BLOOD"),
+                        new CategoryTally("CATHETERS"),
+                        new CategoryTally("SEMEN")
                     };
                     break;
                 case TestEnum.CS:
                     this.CategoryName = "CULTURE & SENSI";
                     CategoryTallies = new List<CategoryTally>
                     {
+                        new CategoryTally("CSF,AF,PF", true),
                         new CategoryTally("CSF"),
-                        new CategoryTally("AF"),
-                        new CategoryTally("PF"),
-                        new CategoryTally("PLU"),
+                        new CategoryTally("ASCITIC/GASTRIC"),
+                        new CategoryTally("PERITONEAL"),
+                        new CategoryTally("PLEURAL"),
                         new CategoryTally("PRECARDIAL"),
-                        new CategoryTally("GASTRIC FLUID"),
+                        new CategoryTally("PANCREATIC FLUID"),
+                        new CategoryTally("BILE"),
+                        new CategoryTally("SYNOVIAL"),
+                        new CategoryTally("SEMEN"),
                         new CategoryTally("OTHERS (CSF,AF,PF)"),
                         new CategoryTally("RECTAL SWAB/STOOL"),
                         new CategoryTally("URINE"),
                         new CategoryTally("BLOOD"),
-                        new CategoryTally("WOUND"),
-                        new CategoryTally("ABSCESS"),
+                        new CategoryTally("WOUND/ABSCESS", true),
+                        new CategoryTally("WOUND/ABSCESS"),
+                        new CategoryTally("VAGINAL DISCHARGE/RECTOVAGINAL SWAB"),
+                        new CategoryTally("TISSUE/MASS"),
+                        new CategoryTally("CATHETERS"),
+                        new CategoryTally("EXUDATES"),
+                        new CategoryTally("PENILE/URETHRAL DISCHARGE"),
                         new CategoryTally("OTHER DISCHARGES"),
+                        new CategoryTally("RESPIRATORY DISCHARGE", true),
                         new CategoryTally("ETA"),
                         new CategoryTally("SPUTUM"),
+                        new CategoryTally("THROAT SWAB"),
                         new CategoryTally("ENVIRONMENTAL CULTURE")
+
                     };
                     break;
                 case TestEnum.HM:
@@ -103,10 +123,17 @@ namespace MonthlyReportEntrySoftware.Entities.BaseEntities
                     };
                     break;
                 case TestEnum.INDIA:
-                    this.CategoryName = "INDIA INK";
+                    this.CategoryName = "INDIA";
                     CategoryTallies = new List<CategoryTally>
                     {
-                        new CategoryTally("INDIA INK PREP")
+                        new CategoryTally("INDIA")
+                    };
+                    break;
+                case TestEnum.XDR:
+                    this.CategoryName = "XDR";
+                    CategoryTallies = new List<CategoryTally>
+                    {
+                        new CategoryTally("XDR")
                     };
                     break;
             }

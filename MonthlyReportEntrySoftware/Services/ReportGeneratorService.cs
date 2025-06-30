@@ -1,4 +1,5 @@
 ﻿using MonthlyReportEntrySoftware.Entities;
+using MonthlyReportEntrySoftware.Entities.BaseEntities;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using System;
@@ -35,12 +36,11 @@ namespace MonthlyReportEntrySoftware.Services
             InflateMonthlyReportRowContent(sheet2, monthlyReportEntity);
             #endregion
 
-
             #region Monthly Report Styling
 
             sheet.Cells["E:Y"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
 
-            var bannerTitleRange = sheet.Cells[$"E1:W1,E29:W29,E50:W50,E81:W81"];
+            var bannerTitleRange = sheet.Cells[$"E1:W1,E31:W31,E57:W57,E95:W95"];
             bannerTitleRange.Merge = true;
             bannerTitleRange.Value = $"WEEKLY REPORT {DateTimeService.GetMonthFromCode(monthlyReportEntity.MonthCode)} {monthlyReportEntity.Year}";
             bannerTitleRange.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
@@ -48,20 +48,63 @@ namespace MonthlyReportEntrySoftware.Services
             bannerTitleRange.Style.Fill.SetBackground(BannerTitlecolor);
 
 
-            sheet.Cells["E3,J3,O3,T3,E31,J31,O31,T31,E52,J52,O52,T52,E83,J83,O83,T83"].Value = "IP";
-            sheet.Cells["E3:E25,J3:J25,O3:O25,T3:T25,E31:E46,J31:J46,O31:O46,T31:T46,E52:E77,J52:J77,O52:O77,T52:T77,E83:E88,J83:J88,O83:O88,T83:T88"].Style.Fill.SetBackground(IPColumnColor);
-
-            sheet.Cells["F3,K3,P3,U3,F31,K31,P31,U31,F52,K52,P52,U52,F83,K83,P83,U83"].Value = "ER";
-            sheet.Cells["F3:F25,K3:K25,P3:P25,U3:U25,F31:F46,K31:K46,P31:P46,U31:U46,F52:F77,K52:K77,P52:P77,U52:U77,F83:F88,K83:K88,P83:P88,U83:U88"].Style.Fill.SetBackground(ERColumnColor);
-
-            sheet.Cells["G3,L3,Q3,V3,G31,L31,Q31,V31,G52,L52,Q52,V52,G83,L83,Q83,V83"].Value = "MAGS";
-            sheet.Cells["G3:G25,L3:L25,Q3:Q25,V3:V25,G31:G46,L31:L46,Q31:Q46,V31:V46,G52:G77,L52:L77,Q52:Q77,V52:V77,G83:G88,L83:L88,Q83:Q88,V83:V88"].Style.Fill.SetBackground(MAGSColumnColor);
-
-            sheet.Cells["H3,M3,R3,W3,H31,M31,R31,W31,H52,M52,R52,W52,H83,M83,R83,W83"].Value = "OP";
-            sheet.Cells["H3:H25,M3:M25,R3:R25,W3:W25,H31:H46,M31:M46,R31:R46,W31:W46,H52:H77,M52:M77,R52:R77,W52:W77,H83:H88,M83:M88,R83:R88,W83:W88"].Style.Fill.SetBackground(OPColumnColor);
+            sheet.Cells["E3,J3,O3,T3,E33,J33,O33,T33,E59,J59,O59,T59,E97,J97,O97,T97"].Value = "IP";
+            sheet.Cells["E33:E53,J33:J53,O33:O53,T33:T53,E97:E102,J97:J102,O97:O102,T97:T102"].Style.Fill.SetBackground(IPColumnColor);
+            sheet.Cells["E90,J90,O90,T90"].Style.Fill.SetBackground(IPColumnColor);
 
 
-            sheet.Cells["B2:Y26,B30:Y47,B51:Y78,B82:Y89"].Style.Border.BorderAround(ExcelBorderStyle.Medium, Color.Black);
+
+            sheet.Cells["E3:E16,J3:J16,O3:O16,T3:T16"].Style.Fill.SetBackground(IPColumnColor);
+            sheet.Cells["E20:E25,J20:J25,O20:O25,T20:T25"].Style.Fill.SetBackground(IPColumnColor);
+
+
+            sheet.Cells["E61:E70,J61:J70,O61:O70,T61:T70"].Style.Fill.SetBackground(IPColumnColor);
+            sheet.Cells["E73:E75,J73:J75,O73:O75,T73:T75"].Style.Fill.SetBackground(IPColumnColor);
+            sheet.Cells["E77:E83,J77:J83,O77:O83,T77:T83"].Style.Fill.SetBackground(IPColumnColor);
+            sheet.Cells["E86:E88,J86:J88,O86:O88,T86:T88"].Style.Fill.SetBackground(IPColumnColor);
+
+
+
+            sheet.Cells["F3,K3,P3,U3,F33,K33,P33,U33,F59,K59,P59,U59,F97,K97,P97,U97"].Value = "ER";
+            sheet.Cells["F33:F53,K33:K53,P33:P53,U33:U53,F97:F102,K97:K102,P97:P102,U97:U102"].Style.Fill.SetBackground(ERColumnColor);
+            sheet.Cells["F90,K90,P90,U90"].Style.Fill.SetBackground(ERColumnColor);
+
+            sheet.Cells["F3:F16,K3:K16,P3:P16,U3:U16"].Style.Fill.SetBackground(ERColumnColor);
+            sheet.Cells["F20:F25,K20:K25,P20:P25,U20:U25"].Style.Fill.SetBackground(ERColumnColor);
+
+            sheet.Cells["F61:F70,K61:K70,P61:P70,U61:U70"].Style.Fill.SetBackground(ERColumnColor);
+            sheet.Cells["F73:F75,K73:K75,P73:P75,U73:U75"].Style.Fill.SetBackground(ERColumnColor);
+            sheet.Cells["F77:F83,K77:K83,P77:P83,U77:U83"].Style.Fill.SetBackground(ERColumnColor);
+            sheet.Cells["F86:F88,K86:K88,P86:P88,U86:U88"].Style.Fill.SetBackground(ERColumnColor);
+
+            // === MAGS Column ===
+            sheet.Cells["G3,L3,Q3,V3,G33,L33,Q33,V33,G59,L59,Q59,V59,G97,L97,Q97,V97"].Value = "MAGS";
+            sheet.Cells["G33:G53,L33:L53,Q33:Q53,V33:V53,G97:G102,L97:L102,Q97:Q102,V97:V102"].Style.Fill.SetBackground(MAGSColumnColor);
+            sheet.Cells["G90,L90,Q90,V90"].Style.Fill.SetBackground(MAGSColumnColor);
+
+            sheet.Cells["G3:G16,L3:L16,Q3:Q16,V3:V16"].Style.Fill.SetBackground(MAGSColumnColor);
+            sheet.Cells["G20:G25,L20:L25,Q20:Q25,V20:V25"].Style.Fill.SetBackground(MAGSColumnColor);
+
+            sheet.Cells["G61:G70,L61:L70,Q61:Q70,V61:V70"].Style.Fill.SetBackground(MAGSColumnColor);
+            sheet.Cells["G73:G75,L73:L75,Q73:Q75,V73:V75"].Style.Fill.SetBackground(MAGSColumnColor);
+            sheet.Cells["G77:G83,L77:L83,Q77:Q83,V77:V83"].Style.Fill.SetBackground(MAGSColumnColor);
+            sheet.Cells["G86:G88,L86:L88,Q86:Q88,V86:V88"].Style.Fill.SetBackground(MAGSColumnColor);
+
+            // === OP Column ===
+            sheet.Cells["H3,M3,R3,W3,H33,M33,R33,W33,H59,M59,R59,W59,H97,M97,R97,W97"].Value = "OP";
+            sheet.Cells["H33:H53,M33:M53,R33:R53,W33:W53,H97:H102,M97:M102,R97:R102,W97:W102"].Style.Fill.SetBackground(OPColumnColor);
+            sheet.Cells["H90,M90,R90,W90"].Style.Fill.SetBackground(OPColumnColor);
+
+            sheet.Cells["H3:H16,M3:M16,R3:R16,W3:W16"].Style.Fill.SetBackground(OPColumnColor);
+            sheet.Cells["H20:H25,M20:M25,R20:R25,W20:W25"].Style.Fill.SetBackground(OPColumnColor);
+
+            sheet.Cells["H61:H70,M61:M70,R61:R70,W61:W70"].Style.Fill.SetBackground(OPColumnColor);
+            sheet.Cells["H73:H75,M73:M75,R73:R75,W73:W75"].Style.Fill.SetBackground(OPColumnColor);
+            sheet.Cells["H77:H83,M77:M83,R77:R83,W77:W83"].Style.Fill.SetBackground(OPColumnColor);
+            sheet.Cells["H86:H88,M86:M88,R86:R88,W86:W88"].Style.Fill.SetBackground(OPColumnColor);
+
+
+            sheet.Cells["B2:Y28,B32:Y54,B58:Y92,B96:Y103"].Style.Border.BorderAround(ExcelBorderStyle.Medium, Color.Black);
             sheet.Cells["B2:D3"].Merge = true;
             sheet.Cells["B2:D3"].Value = "BACTERIOLOGY";
             sheet.Cells["B2:D3"].Style.Border.BorderAround(ExcelBorderStyle.Medium, Color.Black);
@@ -69,60 +112,58 @@ namespace MonthlyReportEntrySoftware.Services
             sheet.Cells["B2:D3"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
             sheet.Cells["B2:D3"].Style.VerticalAlignment = ExcelVerticalAlignment.Center;
 
-            sheet.Cells["B30:D31"].Merge = true;
-            sheet.Cells["B30:D31"].Value = "GRAM STAINING";
-            sheet.Cells["B30:D31"].Style.Border.BorderAround(ExcelBorderStyle.Medium, Color.Black);
-            sheet.Cells["B30:D31"].Style.Font.Bold = true;
-            sheet.Cells["B30:D31"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-            sheet.Cells["B30:D31"].Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+            sheet.Cells["B32:D33"].Merge = true;
+            sheet.Cells["B32:D33"].Value = "GRAM STAINING";
+            sheet.Cells["B32:D33"].Style.Border.BorderAround(ExcelBorderStyle.Medium, Color.Black);
+            sheet.Cells["B32:D33"].Style.Font.Bold = true;
+            sheet.Cells["B32:D33"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+            sheet.Cells["B32:D33"].Style.VerticalAlignment = ExcelVerticalAlignment.Center;
 
-            sheet.Cells["B51:D52"].Merge = true;
-            sheet.Cells["B51:D52"].Value = "CULTURE AND SENSI";
-            sheet.Cells["B51:D52"].Style.Border.BorderAround(ExcelBorderStyle.Medium, Color.Black);
-            sheet.Cells["B51:D52"].Style.Font.Bold = true;
-            sheet.Cells["B51:D52"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-            sheet.Cells["B51:D52"].Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+            sheet.Cells["B58:D59"].Merge = true;
+            sheet.Cells["B58:D59"].Value = "CULTURE AND SENSI";
+            sheet.Cells["B58:D59"].Style.Border.BorderAround(ExcelBorderStyle.Medium, Color.Black);
+            sheet.Cells["B58:D59"].Style.Font.Bold = true;
+            sheet.Cells["B58:D59"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+            sheet.Cells["B58:D59"].Style.VerticalAlignment = ExcelVerticalAlignment.Center;
 
-            sheet.Cells["B82:D83"].Merge = true;
-            sheet.Cells["B82:D83"].Value = "OTHER TESTS";
-            sheet.Cells["B82:D83"].Style.Border.BorderAround(ExcelBorderStyle.Medium, Color.Black);
-            sheet.Cells["B82:D83"].Style.Font.Bold = true;
-            sheet.Cells["B82:D83"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-            sheet.Cells["B82:D83"].Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+            sheet.Cells["B96:D97"].Merge = true;
+            sheet.Cells["B96:D97"].Value = "OTHER TESTS";
+            sheet.Cells["B96:D97"].Style.Border.BorderAround(ExcelBorderStyle.Medium, Color.Black);
+            sheet.Cells["B96:D97"].Style.Font.Bold = true;
+            sheet.Cells["B96:D97"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+            sheet.Cells["B96:D97"].Style.VerticalAlignment = ExcelVerticalAlignment.Center;
 
-            var tempRange = sheet.Cells["E2:H2,E30:H30,E51:H51,E82:H82"];
+            var tempRange = sheet.Cells["E2:H2,E32:H32,E58:H58,E96:H96"];
             tempRange.Value = "1ST WK";
             tempRange.Merge = true;
             tempRange.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
             tempRange.Style.Border.BorderAround(ExcelBorderStyle.Medium, Color.Black);
 
-            tempRange = sheet.Cells["J2:M2,J30:M30,J51:M51,J82:M82"];
+            tempRange = sheet.Cells["J2:M2,J32:M32,J58:M58,J96:M96"];
             tempRange.Value = "2ND WK";
             tempRange.Merge = true;
             tempRange.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
             tempRange.Style.Border.BorderAround(ExcelBorderStyle.Medium, Color.Black);
-            tempRange.Style.Fill.SetBackground(ERColumnColor);
 
-            tempRange = sheet.Cells["O2:R2,O30:R30,O51:R51,O82:R82"];
+            tempRange = sheet.Cells["O2:R2,O32:R32,O58:R58,O96:R96"];
             tempRange.Value = "3RD WK";
             tempRange.Merge = true;
             tempRange.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
             tempRange.Style.Border.BorderAround(ExcelBorderStyle.Medium, Color.Black);
 
-            tempRange = sheet.Cells["T2:W2,T30:W30,T51:W51,T82:W82"];
+            tempRange = sheet.Cells["T2:W2,T32:W32,T58:W58,T96:W96"];
             tempRange.Value = "4TH WK";
             tempRange.Merge = true;
             tempRange.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
             tempRange.Style.Border.BorderAround(ExcelBorderStyle.Medium, Color.Black);
 
-            sheet.Cells["Y2,Y30,Y51,Y83"].Value = "TOTAL";
+            sheet.Cells["Y2,Y32,Y58,Y97"].Value = "TOTAL";
 
 
-            sheet.Cells[$"B24:H24,J24:M24,O24:R24,T24:W24"].Style.Fill.SetBackground(Color.Gold);
-            sheet.Cells[$"B53:Y53,B66:Y66,B71:Y71"].Style.Fill.SetBackground(Color.Yellow);
-            sheet.Cells[$"B61:Y61,B70:Y70,B74:Y74"].Style.Fill.SetBackground(Color.White);
-            sheet.Cells[$"B53:Y53,B66:Y66,B71:Y71"].Style.Font.Color.SetColor(Color.Red);
+            sheet.Cells[$"B26:Y26"].Style.Fill.SetBackground(Color.Gold);
             #endregion
+
+         
 
             Stream stream = File.Create(monthlyReportEntity.FullPath);
             package.SaveAs(stream);
@@ -139,33 +180,33 @@ namespace MonthlyReportEntrySoftware.Services
                 try
                 {
 
-                    for (int i = 5; i <= 23; i++)
+                    for (int i = 5; i <= 25; i++)
                     {
 
-                        if (i == 16 || i == 17) continue;
+                        if (i == 17 || i == 18 || i == 19) continue;
                         string currentSpecimen = sheet.Cells[$"C{i}"].Text;
-                        int _index = ((currentSpecimen.IndexOf(" ") < 0) ? 0 : currentSpecimen.IndexOf(" "));
+                        int _index = ((currentSpecimen.IndexOf(".") < 0) ? 0 : currentSpecimen.IndexOf(" "));
                         currentSpecimen = currentSpecimen.Substring(_index).Trim();
                         
-                        monthlyReportEntity.TestTallies[1][0].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().IP = ZeroIfEmpty(sheet.Cells[$"E{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[2][0].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().IP = ZeroIfEmpty(sheet.Cells[$"J{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[3][0].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().IP = ZeroIfEmpty(sheet.Cells[$"O{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[4][0].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().IP = ZeroIfEmpty(sheet.Cells[$"T{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[1][0].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().IP = ZeroIfEmpty(sheet.Cells[$"E{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[2][0].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().IP = ZeroIfEmpty(sheet.Cells[$"J{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[3][0].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().IP = ZeroIfEmpty(sheet.Cells[$"O{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[4][0].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().IP = ZeroIfEmpty(sheet.Cells[$"T{i}"].Value?.ToString());
 
-                        monthlyReportEntity.TestTallies[1][0].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().ER = ZeroIfEmpty(sheet.Cells[$"F{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[2][0].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().ER = ZeroIfEmpty(sheet.Cells[$"K{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[3][0].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().ER = ZeroIfEmpty(sheet.Cells[$"P{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[4][0].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().ER = ZeroIfEmpty(sheet.Cells[$"U{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[1][0].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().ER = ZeroIfEmpty(sheet.Cells[$"F{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[2][0].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().ER = ZeroIfEmpty(sheet.Cells[$"K{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[3][0].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().ER = ZeroIfEmpty(sheet.Cells[$"P{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[4][0].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().ER = ZeroIfEmpty(sheet.Cells[$"U{i}"].Value?.ToString());
 
-                        monthlyReportEntity.TestTallies[1][0].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().MAGS = ZeroIfEmpty(sheet.Cells[$"G{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[2][0].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().MAGS = ZeroIfEmpty(sheet.Cells[$"L{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[3][0].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().MAGS = ZeroIfEmpty(sheet.Cells[$"Q{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[4][0].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().MAGS = ZeroIfEmpty(sheet.Cells[$"V{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[1][0].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().MAGS = ZeroIfEmpty(sheet.Cells[$"G{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[2][0].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().MAGS = ZeroIfEmpty(sheet.Cells[$"L{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[3][0].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().MAGS = ZeroIfEmpty(sheet.Cells[$"Q{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[4][0].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().MAGS = ZeroIfEmpty(sheet.Cells[$"V{i}"].Value?.ToString());
 
-                        monthlyReportEntity.TestTallies[1][0].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().OPD = ZeroIfEmpty(sheet.Cells[$"H{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[2][0].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().OPD = ZeroIfEmpty(sheet.Cells[$"M{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[3][0].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().OPD = ZeroIfEmpty(sheet.Cells[$"R{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[4][0].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().OPD = ZeroIfEmpty(sheet.Cells[$"W{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[1][0].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().OPD = ZeroIfEmpty(sheet.Cells[$"H{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[2][0].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().OPD = ZeroIfEmpty(sheet.Cells[$"M{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[3][0].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().OPD = ZeroIfEmpty(sheet.Cells[$"R{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[4][0].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().OPD = ZeroIfEmpty(sheet.Cells[$"W{i}"].Value?.ToString());
 
                     }
 
@@ -173,32 +214,32 @@ namespace MonthlyReportEntrySoftware.Services
 
                     #region GS
 
-                    for (int i = 32; i <= 45; i++)
+                    for (int i = 34; i <= 53; i++)
                     {
 
                         string currentSpecimen = sheet.Cells[$"C{i}"].Text;
-                        int _index = ((currentSpecimen.IndexOf(" ") < 0) ? 0 : currentSpecimen.IndexOf(" "));
+                        int _index = ((currentSpecimen.IndexOf(".") < 0) ? 0 : currentSpecimen.IndexOf(" "));
                         currentSpecimen = currentSpecimen.Substring(_index).Trim();
 
-                        monthlyReportEntity.TestTallies[1][1].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().IP = ZeroIfEmpty(sheet.Cells[$"E{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[2][1].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().IP = ZeroIfEmpty(sheet.Cells[$"J{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[3][1].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().IP = ZeroIfEmpty(sheet.Cells[$"O{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[4][1].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().IP = ZeroIfEmpty(sheet.Cells[$"T{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[1][1].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().IP = ZeroIfEmpty(sheet.Cells[$"E{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[2][1].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().IP = ZeroIfEmpty(sheet.Cells[$"J{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[3][1].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().IP = ZeroIfEmpty(sheet.Cells[$"O{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[4][1].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().IP = ZeroIfEmpty(sheet.Cells[$"T{i}"].Value?.ToString());
 
-                        monthlyReportEntity.TestTallies[1][1].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().ER = ZeroIfEmpty(sheet.Cells[$"F{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[2][1].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().ER = ZeroIfEmpty(sheet.Cells[$"K{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[3][1].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().ER = ZeroIfEmpty(sheet.Cells[$"P{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[4][1].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().ER = ZeroIfEmpty(sheet.Cells[$"U{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[1][1].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().ER = ZeroIfEmpty(sheet.Cells[$"F{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[2][1].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().ER = ZeroIfEmpty(sheet.Cells[$"K{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[3][1].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().ER = ZeroIfEmpty(sheet.Cells[$"P{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[4][1].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().ER = ZeroIfEmpty(sheet.Cells[$"U{i}"].Value?.ToString());
 
-                        monthlyReportEntity.TestTallies[1][1].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().MAGS = ZeroIfEmpty(sheet.Cells[$"G{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[2][1].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().MAGS = ZeroIfEmpty(sheet.Cells[$"L{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[3][1].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().MAGS = ZeroIfEmpty(sheet.Cells[$"Q{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[4][1].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().MAGS = ZeroIfEmpty(sheet.Cells[$"V{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[1][1].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().MAGS = ZeroIfEmpty(sheet.Cells[$"G{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[2][1].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().MAGS = ZeroIfEmpty(sheet.Cells[$"L{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[3][1].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().MAGS = ZeroIfEmpty(sheet.Cells[$"Q{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[4][1].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().MAGS = ZeroIfEmpty(sheet.Cells[$"V{i}"].Value?.ToString());
 
-                        monthlyReportEntity.TestTallies[1][1].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().OPD = ZeroIfEmpty(sheet.Cells[$"H{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[2][1].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().OPD = ZeroIfEmpty(sheet.Cells[$"M{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[3][1].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().OPD = ZeroIfEmpty(sheet.Cells[$"R{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[4][1].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().OPD = ZeroIfEmpty(sheet.Cells[$"W{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[1][1].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().OPD = ZeroIfEmpty(sheet.Cells[$"H{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[2][1].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().OPD = ZeroIfEmpty(sheet.Cells[$"M{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[3][1].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().OPD = ZeroIfEmpty(sheet.Cells[$"R{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[4][1].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().OPD = ZeroIfEmpty(sheet.Cells[$"W{i}"].Value?.ToString());
 
                     }
 
@@ -206,33 +247,32 @@ namespace MonthlyReportEntrySoftware.Services
 
                     #region CS
 
-                    for (int i = 53; i <= 76; i++)
+                    for (int i = 61; i <= 90; i++)
                     {
-                        if (i == 53 || i == 61 || i == 62 || i == 66 || i == 70 || i == 71 || i == 74 || i == 75) continue;
+                        if (i == 71 || i == 72 || i == 76 || i == 84 || i == 85 || i == 89) continue;
                         string currentSpecimen = sheet.Cells[$"C{i}"].Text;
-                        int _index = ((currentSpecimen.IndexOf(" ") < 0) ? 0 : currentSpecimen.IndexOf(" "));
-                        if (i == 59 || i == 60 || i == 69 || i == 76) _index = 0;
+                        int _index = ((currentSpecimen.IndexOf(".") < 0) ? 0 : currentSpecimen.IndexOf(" "));
                         currentSpecimen = currentSpecimen.Substring(_index).Trim();
 
-                        monthlyReportEntity.TestTallies[1][2].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().IP = ZeroIfEmpty(sheet.Cells[$"E{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[2][2].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().IP = ZeroIfEmpty(sheet.Cells[$"J{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[3][2].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().IP = ZeroIfEmpty(sheet.Cells[$"O{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[4][2].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().IP = ZeroIfEmpty(sheet.Cells[$"T{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[1][2].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().IP = ZeroIfEmpty(sheet.Cells[$"E{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[2][2].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().IP = ZeroIfEmpty(sheet.Cells[$"J{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[3][2].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().IP = ZeroIfEmpty(sheet.Cells[$"O{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[4][2].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().IP = ZeroIfEmpty(sheet.Cells[$"T{i}"].Value?.ToString());
 
-                        monthlyReportEntity.TestTallies[1][2].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().ER = ZeroIfEmpty(sheet.Cells[$"F{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[2][2].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().ER = ZeroIfEmpty(sheet.Cells[$"K{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[3][2].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().ER = ZeroIfEmpty(sheet.Cells[$"P{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[4][2].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().ER = ZeroIfEmpty(sheet.Cells[$"U{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[1][2].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().ER = ZeroIfEmpty(sheet.Cells[$"F{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[2][2].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().ER = ZeroIfEmpty(sheet.Cells[$"K{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[3][2].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().ER = ZeroIfEmpty(sheet.Cells[$"P{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[4][2].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().ER = ZeroIfEmpty(sheet.Cells[$"U{i}"].Value?.ToString());
 
-                        monthlyReportEntity.TestTallies[1][2].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().MAGS = ZeroIfEmpty(sheet.Cells[$"G{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[2][2].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().MAGS = ZeroIfEmpty(sheet.Cells[$"L{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[3][2].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().MAGS = ZeroIfEmpty(sheet.Cells[$"Q{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[4][2].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().MAGS = ZeroIfEmpty(sheet.Cells[$"V{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[1][2].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().MAGS = ZeroIfEmpty(sheet.Cells[$"G{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[2][2].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().MAGS = ZeroIfEmpty(sheet.Cells[$"L{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[3][2].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().MAGS = ZeroIfEmpty(sheet.Cells[$"Q{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[4][2].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().MAGS = ZeroIfEmpty(sheet.Cells[$"V{i}"].Value?.ToString());
 
-                        monthlyReportEntity.TestTallies[1][2].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().OPD = ZeroIfEmpty(sheet.Cells[$"H{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[2][2].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().OPD = ZeroIfEmpty(sheet.Cells[$"M{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[3][2].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().OPD = ZeroIfEmpty(sheet.Cells[$"R{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[4][2].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim()).FirstOrDefault().OPD = ZeroIfEmpty(sheet.Cells[$"W{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[1][2].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().OPD = ZeroIfEmpty(sheet.Cells[$"H{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[2][2].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().OPD = ZeroIfEmpty(sheet.Cells[$"M{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[3][2].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().OPD = ZeroIfEmpty(sheet.Cells[$"R{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[4][2].CategoryTallies.Where(x => x.SpecimenType == currentSpecimen.Trim() && !x.IsHeader).FirstOrDefault().OPD = ZeroIfEmpty(sheet.Cells[$"W{i}"].Value?.ToString());
 
                     }
 
@@ -240,29 +280,29 @@ namespace MonthlyReportEntrySoftware.Services
 
                     #region Other Tests
 
-                    for (int i = 84; i <= 87; i++)
+                    for (int i = 98; i <= 102; i++)
                     {
                         string currentSpecimen = sheet.Cells[$"C{i}"].Text;
 
-                        monthlyReportEntity.TestTallies[1][i - 81].CategoryTallies.FirstOrDefault().IP = ZeroIfEmpty(sheet.Cells[$"E{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[2][i - 81].CategoryTallies.FirstOrDefault().IP = ZeroIfEmpty(sheet.Cells[$"J{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[3][i - 81].CategoryTallies.FirstOrDefault().IP = ZeroIfEmpty(sheet.Cells[$"O{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[4][i - 81].CategoryTallies.FirstOrDefault().IP = ZeroIfEmpty(sheet.Cells[$"T{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[1][i - 95].CategoryTallies.FirstOrDefault().IP = ZeroIfEmpty(sheet.Cells[$"E{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[2][i - 95].CategoryTallies.FirstOrDefault().IP = ZeroIfEmpty(sheet.Cells[$"J{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[3][i - 95].CategoryTallies.FirstOrDefault().IP = ZeroIfEmpty(sheet.Cells[$"O{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[4][i - 95].CategoryTallies.FirstOrDefault().IP = ZeroIfEmpty(sheet.Cells[$"T{i}"].Value?.ToString());
 
-                        monthlyReportEntity.TestTallies[1][i - 81].CategoryTallies.FirstOrDefault().ER = ZeroIfEmpty(sheet.Cells[$"F{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[2][i - 81].CategoryTallies.FirstOrDefault().ER = ZeroIfEmpty(sheet.Cells[$"K{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[3][i - 81].CategoryTallies.FirstOrDefault().ER = ZeroIfEmpty(sheet.Cells[$"P{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[4][i - 81].CategoryTallies.FirstOrDefault().ER = ZeroIfEmpty(sheet.Cells[$"U{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[1][i - 95].CategoryTallies.FirstOrDefault().ER = ZeroIfEmpty(sheet.Cells[$"F{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[2][i - 95].CategoryTallies.FirstOrDefault().ER = ZeroIfEmpty(sheet.Cells[$"K{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[3][i - 95].CategoryTallies.FirstOrDefault().ER = ZeroIfEmpty(sheet.Cells[$"P{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[4][i - 95].CategoryTallies.FirstOrDefault().ER = ZeroIfEmpty(sheet.Cells[$"U{i}"].Value?.ToString());
 
-                        monthlyReportEntity.TestTallies[1][i - 81].CategoryTallies.FirstOrDefault().MAGS = ZeroIfEmpty(sheet.Cells[$"G{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[2][i - 81].CategoryTallies.FirstOrDefault().MAGS = ZeroIfEmpty(sheet.Cells[$"L{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[3][i - 81].CategoryTallies.FirstOrDefault().MAGS = ZeroIfEmpty(sheet.Cells[$"Q{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[4][i - 81].CategoryTallies.FirstOrDefault().MAGS = ZeroIfEmpty(sheet.Cells[$"V{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[1][i - 95].CategoryTallies.FirstOrDefault().MAGS = ZeroIfEmpty(sheet.Cells[$"G{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[2][i - 95].CategoryTallies.FirstOrDefault().MAGS = ZeroIfEmpty(sheet.Cells[$"L{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[3][i - 95].CategoryTallies.FirstOrDefault().MAGS = ZeroIfEmpty(sheet.Cells[$"Q{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[4][i - 95].CategoryTallies.FirstOrDefault().MAGS = ZeroIfEmpty(sheet.Cells[$"V{i}"].Value?.ToString());
 
-                        monthlyReportEntity.TestTallies[1][i - 81].CategoryTallies.FirstOrDefault().OPD = ZeroIfEmpty(sheet.Cells[$"H{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[2][i - 81].CategoryTallies.FirstOrDefault().OPD = ZeroIfEmpty(sheet.Cells[$"M{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[3][i - 81].CategoryTallies.FirstOrDefault().OPD = ZeroIfEmpty(sheet.Cells[$"R{i}"].Value?.ToString());
-                        monthlyReportEntity.TestTallies[4][i - 81].CategoryTallies.FirstOrDefault().OPD = ZeroIfEmpty(sheet.Cells[$"W{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[1][i - 95].CategoryTallies.FirstOrDefault().OPD = ZeroIfEmpty(sheet.Cells[$"H{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[2][i - 95].CategoryTallies.FirstOrDefault().OPD = ZeroIfEmpty(sheet.Cells[$"M{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[3][i - 95].CategoryTallies.FirstOrDefault().OPD = ZeroIfEmpty(sheet.Cells[$"R{i}"].Value?.ToString());
+                        monthlyReportEntity.TestTallies[4][i - 95].CategoryTallies.FirstOrDefault().OPD = ZeroIfEmpty(sheet.Cells[$"W{i}"].Value?.ToString());
 
                     }
 
@@ -279,7 +319,7 @@ namespace MonthlyReportEntrySoftware.Services
             }
         }
         private static void InflateWeeklyReportRowContent(ExcelWorksheet sheet, MonthlyReportEntity monthlyReportEntity)
-        {
+        {   
 
             int row = 5;
 
@@ -287,61 +327,111 @@ namespace MonthlyReportEntrySoftware.Services
             sheet.Cells[$"B4:D4"].Value = "AFB";
             sheet.Cells[$"B4:D4"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
             sheet.Cells[$"B4:D4"].Style.Border.BorderAround(ExcelBorderStyle.Thin, Color.Black);
-            sheet.Cells[$"B1:Y89"].Style.Font.Bold = true;
-            sheet.Cells[$"B1:Y89"].Style.Font.Size = 10;
+            sheet.Cells[$"B1:Y103"].Style.Font.Bold = true;
+            sheet.Cells[$"B1:Y103"].Style.Font.Size = 10;
 
-            sheet.Cells["I5:I15,I32:I45,I61:I65,I70,I74,I84:I87"].Style.Font.Color.SetColor(Color.Red);
-            sheet.Cells["N5:N15,N32:N45,N61:N65,N70,N74,N84:N87"].Style.Font.Color.SetColor(Color.Red);
-            sheet.Cells["S5:S15,S32:S45,S61:S65,S70,S74,S84:S87"].Style.Font.Color.SetColor(Color.Red);
-            sheet.Cells["X5:X15,X32:X45,X61:X65,X70,X74,X84:X87"].Style.Font.Color.SetColor(Color.Red);
-            sheet.Cells["Y54:Y60,Y67:Y69,Y72:Y73"].Style.Font.Color.SetColor(Color.Red);
-            sheet.Cells["Y5:Y15,Y32:Y45,Y61:Y65,Y70,Y76,Y74,Y84:Y88"].Style.Font.Color.SetColor(Color.Blue);
+            sheet.Cells["I5:I17,I20:I26,I34:I53,I61:I92"].Style.Font.Color.SetColor(Color.Red);
+            sheet.Cells["N5:N17,N20:N26,N34:N53,N61:N92"].Style.Font.Color.SetColor(Color.Red);
+            sheet.Cells["S5:S17,S20:S26,S34:S53,S61:S92"].Style.Font.Color.SetColor(Color.Red);
+            sheet.Cells["X5:X17,X20:X26,X34:X53,X61:X92"].Style.Font.Color.SetColor(Color.Red);
+            sheet.Cells["Y5:Y17,Y20:Y26,Y34:Y53,Y61:Y92"].Style.Font.Color.SetColor(Color.Blue);
 
-            sheet.Cells["B2:Y26,B30:Y47,B51:Y78,B82:Y89"].Style.Border.Top.Style = ExcelBorderStyle.Thin;
-            sheet.Cells["B2:Y26,B30:Y47,B51:Y78,B82:Y89"].Style.Border.Top.Color.SetColor(Color.Black);
+            sheet.Cells["B2:Y28,B32:Y54,B58:Y92,B96:Y103"].Style.Border.Top.Style = ExcelBorderStyle.Thin;
+            sheet.Cells["B2:Y28,B32:Y54,B58:Y92,B96:Y103"].Style.Border.Top.Color.SetColor(Color.Black);
 
-            sheet.Cells["B2:Y26,B30:Y47,B51:Y78,B82:Y89"].Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
-            sheet.Cells["B2:Y26,B30:Y47,B51:Y78,B82:Y89"].Style.Border.Bottom.Color.SetColor(Color.Black);
+            sheet.Cells["B2:Y28,B32:Y54,B58:Y92,B96:Y103"].Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+            sheet.Cells["B2:Y28,B32:Y54,B58:Y92,B96:Y103"].Style.Border.Bottom.Color.SetColor(Color.Black);
 
-            sheet.Cells["B2:Y26,B30:Y47,B51:Y78,B82:Y89"].Style.Border.Left.Style = ExcelBorderStyle.Thin;
-            sheet.Cells["B2:Y26,B30:Y47,B51:Y78,B82:Y89"].Style.Border.Left.Color.SetColor(Color.Black);
+            sheet.Cells["B2:Y28,B32:Y54,B58:Y92,B96:Y103"].Style.Border.Left.Style = ExcelBorderStyle.Thin;
+            sheet.Cells["B2:Y28,B32:Y54,B58:Y92,B96:Y103"].Style.Border.Left.Color.SetColor(Color.Black);
 
-            sheet.Cells["B2:Y26,B30:Y47,B51:Y78,B82:Y89"].Style.Border.Right.Style = ExcelBorderStyle.Thin;
-            sheet.Cells["B2:Y26,B30:Y47,B51:Y78,B82:Y89"].Style.Border.Right.Color.SetColor(Color.Black);
+            sheet.Cells["B2:Y28,B32:Y54,B58:Y92,B96:Y103"].Style.Border.Right.Style = ExcelBorderStyle.Thin;
+            sheet.Cells["B2:Y28,B32:Y54,B58:Y92,B96:Y103"].Style.Border.Right.Color.SetColor(Color.Black);
 
 
-            var specimens = monthlyReportEntity.TestTallies[1][0].CategoryTallies.Select(x => x.SpecimenType).ToList();
+            var tallies = monthlyReportEntity.TestTallies[1][0].CategoryTallies.ToList();
 
             #region AFB Category
-            foreach (var specimen in specimens)
+            foreach (var tally in tallies)
             {
+                var specimen = tally.SpecimenType;
+
                 string counterLabel = (row - 4).ToString() + ". ";
                 sheet.Cells[$"B{row}:D{row}"].Merge = true;
-                if (row >= 26) break;
+            
 
-
-                if (row - 4 == 12)
+                if (row - 4 == 13)
                 {
-                    sheet.Cells[$"Y{row}"].Formula = $"=SUM(Y5:Y15)";
-                    sheet.Cells[$"Y{row}"].Style.Font.Color.SetColor(Color.Red);
+                    sheet.Cells[$"B{row}:Y{row}"].Style.Fill.SetBackground(Color.Gold);
+
+
+                    sheet.Cells[$"B{row}:D{row}"].Merge = true;
+                    sheet.Cells[$"B{row}:D{row}"].Style.Font.Bold = false;
+                    sheet.Cells[$"B{row}:D{row}"].Style.Font.Italic = true;
+                    sheet.Cells[$"B{row}:D{row}"].Value = "SUB-TOTAL: ";
+
+                    sheet.Cells[$"E{row}"].Formula = "=SUM(E5:E16)";
+                    sheet.Cells[$"F{row}"].Formula = "=SUM(F5:F16)";
+                    sheet.Cells[$"G{row}"].Formula = "=SUM(G5:G16)";
+                    sheet.Cells[$"H{row}"].Formula = "=SUM(H5:H16)";
+
+
+                    sheet.Cells[$"J{row}"].Formula = "=SUM(J5:J16)";
+                    sheet.Cells[$"K{row}"].Formula = "=SUM(K5:K16)";
+                    sheet.Cells[$"L{row}"].Formula = "=SUM(L5:L16)";
+                    sheet.Cells[$"M{row}"].Formula = "=SUM(M5:M16)";
+
+
+                    sheet.Cells[$"O{row}"].Formula = "=SUM(O5:O16)";
+                    sheet.Cells[$"P{row}"].Formula = "=SUM(P5:P16)";
+                    sheet.Cells[$"Q{row}"].Formula = "=SUM(Q5:Q16)";
+                    sheet.Cells[$"R{row}"].Formula = "=SUM(R5:R16)";
+
+
+                    sheet.Cells[$"T{row}"].Formula = "=SUM(T5:T16)";
+                    sheet.Cells[$"U{row}"].Formula = "=SUM(U5:U16)";
+                    sheet.Cells[$"V{row}"].Formula = "=SUM(V5:V16)";
+                    sheet.Cells[$"W{row}"].Formula = "=SUM(W5:W16)";
+
+                    sheet.Cells[$"I{row}"].Formula = "=SUM(I5:I16)";
+                    sheet.Cells[$"N{row}"].Formula = "=SUM(N5:N16)";
+                    sheet.Cells[$"S{row}"].Formula = "=SUM(S5:S16)";
+                    sheet.Cells[$"X{row}"].Formula = "=SUM(X5:X16)";
+
+
+                    sheet.Cells[$"Y{row}"].Formula = $"=SUM(Y5:Y16)";
+
 
                     row++;
                     sheet.Cells[$"B{row}:D{row}"].Merge = true;
-                    sheet.Cells[$"B{row}:D{row}"].Value = "OTHERS:";
-                    sheet.Cells[$"E{row}:W{row}"].Style.Fill.SetBackground(Color.White);
-
                     row++;
-                    sheet.Cells[$"B{row}:D{row}"].Merge = true;
                 }
 
 
-                if (row >= 18)
+                if (row >= 19)
                 {
                     counterLabel = string.Empty;
-                    sheet.Cells[$"B{row}:D{row}"].Style.Fill.SetBackground((row == 24) ? Color.Gold : GrayColor);
+                    sheet.Cells[$"B{row}:D{row}"].Style.Fill.SetBackground(GrayColor);
                 }
 
-                sheet.Cells[$"B{row}:D{row}"].Value = $"{counterLabel} {specimen}";
+                if (tally.IsHeader)
+                {
+                    counterLabel = string.Empty;
+                    sheet.Cells[$"B{row}:D{row}"].Merge = true;
+                    sheet.Cells[$"B{row}:D{row}"].Value = $"{specimen}";
+                    sheet.Cells[$"B{row}:Y{row}"].Style.Fill.SetBackground(Color.Yellow);
+                    sheet.Cells[$"B{row}:Y{row}"].Style.Font.Color.SetColor(Color.Red);
+                    row++;
+                    continue;
+                }
+                else
+                {
+                    sheet.Cells[$"B{row}:D{row}"].Value = $"{counterLabel} {specimen}";
+                }
+
+
+
+
 
                 sheet.Cells[$"E{row}"].Value = EmptyIfZero(monthlyReportEntity.TestTallies[1][0].CategoryTallies.Where(x => x.SpecimenType == specimen).FirstOrDefault().IP);
                 sheet.Cells[$"J{row}"].Value = EmptyIfZero(monthlyReportEntity.TestTallies[2][0].CategoryTallies.Where(x => x.SpecimenType == specimen).FirstOrDefault().IP);
@@ -379,35 +469,35 @@ namespace MonthlyReportEntrySoftware.Services
             sheet.Cells[$"B{row}:D{row}"].Style.Font.Italic = true;
             sheet.Cells[$"B{row}:D{row}"].Value = "TOTAL NO. OF OTHERS: ";
 
-            sheet.Cells[$"E{row}"].Formula = "=SUM(E18:E23)";
-            sheet.Cells[$"F{row}"].Formula = "=SUM(F18:F23)";
-            sheet.Cells[$"G{row}"].Formula = "=SUM(G18:G23)";
-            sheet.Cells[$"H{row}"].Formula = "=SUM(H18:H23)";
+            sheet.Cells[$"E{row}"].Formula = "=SUM(E20:E25)";
+            sheet.Cells[$"F{row}"].Formula = "=SUM(F20:F25)";
+            sheet.Cells[$"G{row}"].Formula = "=SUM(G20:G25)";
+            sheet.Cells[$"H{row}"].Formula = "=SUM(H20:H25)";
 
 
-            sheet.Cells[$"J{row}"].Formula = "=SUM(J18:J23)";
-            sheet.Cells[$"K{row}"].Formula = "=SUM(K18:K23)";
-            sheet.Cells[$"L{row}"].Formula = "=SUM(L18:L23)";
-            sheet.Cells[$"M{row}"].Formula = "=SUM(M18:M23)";
+            sheet.Cells[$"J{row}"].Formula = "=SUM(J20:J25)";
+            sheet.Cells[$"K{row}"].Formula = "=SUM(K20:K25)";
+            sheet.Cells[$"L{row}"].Formula = "=SUM(L20:L25)";
+            sheet.Cells[$"M{row}"].Formula = "=SUM(M20:M25)";
 
 
-            sheet.Cells[$"O{row}"].Formula = "=SUM(O18:O23)";
-            sheet.Cells[$"P{row}"].Formula = "=SUM(P18:P23)";
-            sheet.Cells[$"Q{row}"].Formula = "=SUM(Q18:Q23)";
-            sheet.Cells[$"R{row}"].Formula = "=SUM(R18:R23)";
+            sheet.Cells[$"O{row}"].Formula = "=SUM(O20:O25)";
+            sheet.Cells[$"P{row}"].Formula = "=SUM(P20:P25)";
+            sheet.Cells[$"Q{row}"].Formula = "=SUM(Q20:Q25)";
+            sheet.Cells[$"R{row}"].Formula = "=SUM(R20:R25)";
 
 
-            sheet.Cells[$"T{row}"].Formula = "=SUM(T18:T23)";
-            sheet.Cells[$"U{row}"].Formula = "=SUM(U18:U23)";
-            sheet.Cells[$"V{row}"].Formula = "=SUM(V18:V23)";
-            sheet.Cells[$"W{row}"].Formula = "=SUM(W18:W23)";
+            sheet.Cells[$"T{row}"].Formula = "=SUM(T20:T25)";
+            sheet.Cells[$"U{row}"].Formula = "=SUM(U20:U25)";
+            sheet.Cells[$"V{row}"].Formula = "=SUM(V20:V25)";
+            sheet.Cells[$"W{row}"].Formula = "=SUM(W20:W25)";
 
-            sheet.Cells[$"I{row}"].Formula = "=SUM(I18:I23)";
-            sheet.Cells[$"N{row}"].Formula = "=SUM(N18:N23)";
-            sheet.Cells[$"S{row}"].Formula = "=SUM(S18:S23)";
-            sheet.Cells[$"X{row}"].Formula = "=SUM(X18:X23)";
+            sheet.Cells[$"I{row}"].Formula = "=SUM(I20:I25)";
+            sheet.Cells[$"N{row}"].Formula = "=SUM(N20:N25)";
+            sheet.Cells[$"S{row}"].Formula = "=SUM(S20:S25)";
+            sheet.Cells[$"X{row}"].Formula = "=SUM(X20:X25)";
 
-            sheet.Cells[$"Y{row}"].Formula = "=SUM(I24,N24,S24,X24)";
+            sheet.Cells[$"Y{row}"].Formula = "=SUM(I27,N27,S27,X27)";
 
             sheet.Cells[$"I{row}"].Style.Font.Color.SetColor(Color.Red);
             sheet.Cells[$"N{row}"].Style.Font.Color.SetColor(Color.Red);
@@ -415,32 +505,56 @@ namespace MonthlyReportEntrySoftware.Services
             sheet.Cells[$"X{row}"].Style.Font.Color.SetColor(Color.Red);
             sheet.Cells[$"Y{row}"].Style.Font.Color.SetColor(Color.Blue);
 
-            sheet.Cells["B25:D25"].Merge = true;
+            sheet.Cells["B27:D27"].Merge = true;
 
-            sheet.Cells["B26:D26"].Merge = true;
-            sheet.Cells["B26:D26"].Value = "TOTAL NO. OF AFB RECEIVED:";
+            sheet.Cells["B28:D28"].Merge = true;
+            sheet.Cells["B28:D28"].Value = "TOTAL NO. OF AFB RECEIVED:";
 
-            sheet.Cells["I26"].Formula = "SUM(I5:I15,I24)";
-            sheet.Cells["N26"].Formula = "SUM(N5:N15,N24)";
-            sheet.Cells["S26"].Formula = "SUM(S5:S15,S24)";
-            sheet.Cells["X26"].Formula = "SUM(X5:X15,X24)";
+            sheet.Cells[$"E28"].Formula = "=SUM(E17,E26)";
+            sheet.Cells[$"F28"].Formula = "=SUM(F17,F26)";
+            sheet.Cells[$"G28"].Formula = "=SUM(G17,G26)";
+            sheet.Cells[$"H28"].Formula = "=SUM(H17,H26)";
 
-            sheet.Cells["Y26"].Formula = "SUM(Y16,Y24)";
-            sheet.Cells["Y26"].Style.Font.Color.SetColor(Color.Purple);
-            sheet.Cells["B26:Y26"].Style.Border.BorderAround(ExcelBorderStyle.Thick, Color.Black);
+
+            sheet.Cells[$"J28"].Formula = "=SUM(J17,J26)";
+            sheet.Cells[$"K28"].Formula = "=SUM(K17,K26)";
+            sheet.Cells[$"L28"].Formula = "=SUM(L17,L26)";
+            sheet.Cells[$"M28"].Formula = "=SUM(M17,M26)";
+
+
+            sheet.Cells[$"O28"].Formula = "=SUM(O17,O26)";
+            sheet.Cells[$"P28"].Formula = "=SUM(P17,P26)";
+            sheet.Cells[$"Q28"].Formula = "=SUM(Q17,Q26)";
+            sheet.Cells[$"R28"].Formula = "=SUM(R17,R26)";
+
+
+            sheet.Cells[$"T28"].Formula = "=SUM(T17,T26)";
+            sheet.Cells[$"U28"].Formula = "=SUM(U17,U26)";
+            sheet.Cells[$"V28"].Formula = "=SUM(V17,V26)";
+            sheet.Cells[$"W28"].Formula = "=SUM(W17,W26)";
+
+
+            sheet.Cells["I28"].Formula = "SUM(I17,I26)";
+            sheet.Cells["N28"].Formula = "SUM(N17,N26)";
+            sheet.Cells["S28"].Formula = "SUM(S17,S26)";
+            sheet.Cells["X28"].Formula = "SUM(X17,X26)";
+
+            sheet.Cells["Y28"].Formula = "SUM(Y17,Y26)";
+            sheet.Cells["Y28"].Style.Font.Color.SetColor(Color.Purple);
+            sheet.Cells["B28:Y28"].Style.Border.BorderAround(ExcelBorderStyle.Thick, Color.Black);
 
             #endregion
 
             #region GS Category
-            row = 32;
+            row = 34;
 
-            specimens = monthlyReportEntity.TestTallies[1][1].CategoryTallies.Select(x => x.SpecimenType).ToList();
+            tallies = monthlyReportEntity.TestTallies[1][1].CategoryTallies.ToList();
 
-            foreach (var specimen in specimens)
+            foreach (var tally in tallies)
             {
-                string counterLabel = (row - 31).ToString() + ". ";
+                var specimen = tally.SpecimenType;
+                string counterLabel = (row - 33).ToString() + ". ";
                 sheet.Cells[$"B{row}:D{row}"].Merge = true;
-                if (row >= 47) break;
 
                 sheet.Cells[$"B{row}:D{row}"].Value = $"{counterLabel} {specimen}";
 
@@ -476,197 +590,238 @@ namespace MonthlyReportEntrySoftware.Services
 
             sheet.Cells[$"B46:D46"].Merge = true;
             row++;
-            sheet.Cells[$"B47:D47"].Merge = true;
-            sheet.Cells[$"B47:D47"].Value = "TOTAL NO OF. SPECIMEN RECEIVED:";
-            sheet.Cells["B47:Y47"].Style.Border.BorderAround(ExcelBorderStyle.Thick, Color.Black);
+            sheet.Cells[$"B54:D54"].Merge = true;
+            sheet.Cells[$"B54:D54"].Value = "TOTAL NO OF. SPECIMEN RECEIVED:";
+            sheet.Cells["B54:Y54"].Style.Border.BorderAround(ExcelBorderStyle.Thick, Color.Black);
 
-            sheet.Cells["I47"].Formula = "=SUM(I32:I45)";
-            sheet.Cells["N47"].Formula = "=SUM(N32:N45)";
-            sheet.Cells["S47"].Formula = "=SUM(S32:S45)";
-            sheet.Cells["X47"].Formula = "=SUM(X32:X45)";
-            sheet.Cells["Y47"].Formula = "=SUM(Y32:Y45)";
+            sheet.Cells[$"E54"].Formula = "=SUM(E34:E53)";
+            sheet.Cells[$"F54"].Formula = "=SUM(F34:F53)";
+            sheet.Cells[$"G54"].Formula = "=SUM(G34:G53)";
+            sheet.Cells[$"H54"].Formula = "=SUM(H34:H53)";
 
-            sheet.Cells["I47"].Style.Font.Color.SetColor(Color.Red);
-            sheet.Cells["N47"].Style.Font.Color.SetColor(Color.Red);
-            sheet.Cells["S47"].Style.Font.Color.SetColor(Color.Red);
-            sheet.Cells["X47"].Style.Font.Color.SetColor(Color.Red);
-            sheet.Cells["Y47"].Style.Font.Color.SetColor(Color.Purple);
+
+            sheet.Cells[$"J54"].Formula = "=SUM(J34:J53)";
+            sheet.Cells[$"K54"].Formula = "=SUM(K34:K53)";
+            sheet.Cells[$"L54"].Formula = "=SUM(L34:L53)";
+            sheet.Cells[$"M54"].Formula = "=SUM(M34:M53)";
+
+
+            sheet.Cells[$"O54"].Formula = "=SUM(O34:O53)";
+            sheet.Cells[$"P54"].Formula = "=SUM(P34:P53)";
+            sheet.Cells[$"Q54"].Formula = "=SUM(Q34:Q53)";
+            sheet.Cells[$"R54"].Formula = "=SUM(R34:R53)";
+
+
+            sheet.Cells[$"T54"].Formula = "=SUM(T34:T53)";
+            sheet.Cells[$"U54"].Formula = "=SUM(U34:U53)";
+            sheet.Cells[$"V54"].Formula = "=SUM(V34:V53)";
+            sheet.Cells[$"W54"].Formula = "=SUM(W34:W53)";
+
+            sheet.Cells["I54"].Formula = "=SUM(I34:I53)";
+            sheet.Cells["N54"].Formula = "=SUM(N34:N53)";
+            sheet.Cells["S54"].Formula = "=SUM(S34:S53)";
+            sheet.Cells["X54"].Formula = "=SUM(X34:X53)";
+            sheet.Cells["Y54"].Formula = "=SUM(Y34:Y53)";
+
+            sheet.Cells["I54"].Style.Font.Color.SetColor(Color.Red);
+            sheet.Cells["N54"].Style.Font.Color.SetColor(Color.Red);
+            sheet.Cells["S54"].Style.Font.Color.SetColor(Color.Red);
+            sheet.Cells["X54"].Style.Font.Color.SetColor(Color.Red);
+            sheet.Cells["Y54"].Style.Font.Color.SetColor(Color.Purple);
 
             #endregion
 
             #region C/S Category
-            row = 53;
+            row = 60;
 
-            specimens = monthlyReportEntity.TestTallies[1][2].CategoryTallies.Select(x => x.SpecimenType).ToList();
+            tallies = monthlyReportEntity.TestTallies[1][2].CategoryTallies.ToList();
             int ctrLabel = 1, incrementFactor = 0;
-            foreach (var specimen in specimens)
+            foreach (var tally in tallies)
             {
+                var specimen = tally.SpecimenType;
                 string specimenLabel = $"{ctrLabel}. {specimen}";
                 sheet.Cells[$"B{row}:D{row}"].Merge = true;
 
-                if (row - 52 == 1)
-                {
-                    specimenLabel = $"{ctrLabel}. CSF,AF,PF";
-                    sheet.Cells[$"B{row}:D{row}"].Value = specimenLabel;
-                    row++;
-                    sheet.Cells[$"B{row}:D{row}"].Merge = true;
-                }
-
-                if (row < 63 && row > 53)
-                {
-                    specimenLabel = specimen;
-                    sheet.Cells[$"B{row}:D{row}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-
-                    if (row == 61)
-                    {
-                        specimenLabel = "TOTAL TRANSUDATES";
-
-                        sheet.Cells[$"B{row}:D{row}"].Value = specimenLabel;
-                        sheet.Cells[$"B{row}:D{row}"].Style.Font.Bold = false;
-                        sheet.Cells[$"B{row}:D{row}"].Style.Font.Italic = true;
-
-                        sheet.Cells[$"E{row}"].Formula = "=SUM(E54:E60)";
-                        sheet.Cells[$"F{row}"].Formula = "=SUM(F54:F60)";
-                        sheet.Cells[$"G{row}"].Formula = "=SUM(G54:G60)";
-                        sheet.Cells[$"H{row}"].Formula = "=SUM(H54:H60)";
-                        sheet.Cells[$"I{row}"].Formula = "=SUM(I54:I60)";
-
-                        sheet.Cells[$"J{row}"].Formula = "=SUM(J54:J60)";
-                        sheet.Cells[$"K{row}"].Formula = "=SUM(K54:K60)";
-                        sheet.Cells[$"L{row}"].Formula = "=SUM(L54:L60)";
-                        sheet.Cells[$"M{row}"].Formula = "=SUM(M54:M60)";
-                        sheet.Cells[$"N{row}"].Formula = "=SUM(N54:N60)";
-
-                        sheet.Cells[$"O{row}"].Formula = "=SUM(O54:O60)";
-                        sheet.Cells[$"P{row}"].Formula = "=SUM(P54:P60)";
-                        sheet.Cells[$"Q{row}"].Formula = "=SUM(Q54:Q60)";
-                        sheet.Cells[$"R{row}"].Formula = "=SUM(R54:R60)";
-                        sheet.Cells[$"S{row}"].Formula = "=SUM(S54:S60)";
-
-                        sheet.Cells[$"T{row}"].Formula = "=SUM(T54:T60)";
-                        sheet.Cells[$"U{row}"].Formula = "=SUM(U54:U60)";
-                        sheet.Cells[$"V{row}"].Formula = "=SUM(V54:V60)";
-                        sheet.Cells[$"W{row}"].Formula = "=SUM(W54:W60)";
-                        sheet.Cells[$"X{row}"].Formula = "=SUM(X54:X60)";
-
-                        sheet.Cells[$"Y{row}"].Formula = "=SUM(Y54:Y60)";
-                        ctrLabel++;
-                        row++;
-                        sheet.Cells[$"B{row}:D{row}"].Merge = true;
-                        row++;
-                        specimenLabel = $"{ctrLabel}. {specimen}";
-                        sheet.Cells[$"B{row}:D{row}"].Merge = true;
-                        incrementFactor = 1;
-                    }
-                }
-
-                if (row == 66)
-                {
-                    incrementFactor = 0;
-                    specimenLabel = "5. WOUND/ABSCESS";
-                    sheet.Cells[$"B{row}:D{row}"].Value = specimenLabel;
-                    row++;
-                    specimenLabel = specimen;
-                }
-
-
-                if (row > 66 && row <= 70)
-                {
-                    specimenLabel = specimen;
-                    sheet.Cells[$"B{row}:D{row}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                    if (row == 70)
-                    {
-                        specimenLabel = "TOTAL EXUDATES";
-
-                        sheet.Cells[$"B{row}:D{row}"].Value = specimenLabel;
-                        sheet.Cells[$"B{row}:D{row}"].Style.Font.Bold = false;
-                        sheet.Cells[$"B{row}:D{row}"].Style.Font.Italic = true;
-
-                        sheet.Cells[$"E{row}"].Formula = "=SUM(E67:E69)";
-                        sheet.Cells[$"F{row}"].Formula = "=SUM(F67:F69)";
-                        sheet.Cells[$"G{row}"].Formula = "=SUM(G67:G69)";
-                        sheet.Cells[$"H{row}"].Formula = "=SUM(H67:H69)";
-                        sheet.Cells[$"I{row}"].Formula = "=SUM(I67:I69)";
-
-                        sheet.Cells[$"J{row}"].Formula = "=SUM(J67:J69)";
-                        sheet.Cells[$"K{row}"].Formula = "=SUM(K67:K69)";
-                        sheet.Cells[$"L{row}"].Formula = "=SUM(L67:L69)";
-                        sheet.Cells[$"M{row}"].Formula = "=SUM(M67:M69)";
-                        sheet.Cells[$"N{row}"].Formula = "=SUM(N67:N69)";
-
-                        sheet.Cells[$"O{row}"].Formula = "=SUM(O67:O69)";
-                        sheet.Cells[$"P{row}"].Formula = "=SUM(P67:P69)";
-                        sheet.Cells[$"Q{row}"].Formula = "=SUM(Q67:Q69)";
-                        sheet.Cells[$"R{row}"].Formula = "=SUM(R67:R69)";
-                        sheet.Cells[$"S{row}"].Formula = "=SUM(S67:S69)";
-
-                        sheet.Cells[$"T{row}"].Formula = "=SUM(T67:T69)";
-                        sheet.Cells[$"U{row}"].Formula = "=SUM(U67:U69)";
-                        sheet.Cells[$"V{row}"].Formula = "=SUM(V67:V69)";
-                        sheet.Cells[$"W{row}"].Formula = "=SUM(W67:W69)";
-                        sheet.Cells[$"X{row}"].Formula = "=SUM(X67:X69)";
-
-                        sheet.Cells[$"Y{row}"].Formula = "=SUM(Y67:Y69)";
-                        incrementFactor = 1;
-                        ctrLabel += incrementFactor;
-                        row++;
-                        sheet.Cells[$"B{row}:D{row}"].Merge = true;
-                    }
-                }
+                
 
                 if (row == 71)
                 {
-                    incrementFactor = 0;
-                    specimenLabel = "6. RESPIRATORY DISCHARGE";
-                    sheet.Cells[$"B{row}:D{row}"].Value = specimenLabel;
+                    sheet.Cells[$"B{row}:D{row}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+                    sheet.Cells[$"B{row}:Y{row}"].Style.Fill.SetBackground(Color.Gold);
+
+
+                    sheet.Cells[$"B{row}:D{row}"].Merge = true;
+                    sheet.Cells[$"B{row}:D{row}"].Style.Font.Bold = false;
+                    sheet.Cells[$"B{row}:D{row}"].Style.Font.Italic = true;
+                    sheet.Cells[$"B{row}:D{row}"].Value = "TOTAL TRANSUDATES: ";
+
+                    sheet.Cells[$"E{row}"].Formula = "=SUM(E61:E70)";
+                    sheet.Cells[$"F{row}"].Formula = "=SUM(F61:F70)";
+                    sheet.Cells[$"G{row}"].Formula = "=SUM(G61:G70)";
+                    sheet.Cells[$"H{row}"].Formula = "=SUM(H61:H70)";
+
+
+                    sheet.Cells[$"J{row}"].Formula = "=SUM(J61:J70)";
+                    sheet.Cells[$"K{row}"].Formula = "=SUM(K61:K70)";
+                    sheet.Cells[$"L{row}"].Formula = "=SUM(L61:L70)";
+                    sheet.Cells[$"M{row}"].Formula = "=SUM(M61:M70)";
+
+
+                    sheet.Cells[$"O{row}"].Formula = "=SUM(O61:O70)";
+                    sheet.Cells[$"P{row}"].Formula = "=SUM(P61:P70)";
+                    sheet.Cells[$"Q{row}"].Formula = "=SUM(Q61:Q70)";
+                    sheet.Cells[$"R{row}"].Formula = "=SUM(R61:R70)";
+
+
+                    sheet.Cells[$"T{row}"].Formula = "=SUM(T61:T70)";
+                    sheet.Cells[$"U{row}"].Formula = "=SUM(U61:U70)";
+                    sheet.Cells[$"V{row}"].Formula = "=SUM(V61:V70)";
+                    sheet.Cells[$"W{row}"].Formula = "=SUM(W61:W70)";
+
+                    sheet.Cells[$"I{row}"].Formula = "=SUM(I61:I70)";
+                    sheet.Cells[$"N{row}"].Formula = "=SUM(N61:N70)";
+                    sheet.Cells[$"S{row}"].Formula = "=SUM(S61:S70)";
+                    sheet.Cells[$"X{row}"].Formula = "=SUM(X61:X70)";
+
+
+                    sheet.Cells[$"Y{row}"].Formula = $"=SUM(Y61:Y70)";
+
                     row++;
-                    specimenLabel = specimen;
+                    sheet.Cells[$"B{row}:D{row}"].Merge = true;
+                    row++;
+                    ctrLabel++;
+                    incrementFactor = 1;
+                    specimenLabel = $"{ctrLabel}. {specimen}";
                 }
 
-                if (row > 71 && row <= 74)
+
+
+                if (row == 84)
                 {
-                    specimenLabel = specimen;
-                    sheet.Cells[$"B{row}:D{row}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                    if (row == 74)
+                    sheet.Cells[$"B{row}:D{row}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+                    sheet.Cells[$"B{row}:Y{row}"].Style.Fill.SetBackground(Color.Gold);
+
+
+                    sheet.Cells[$"B{row}:D{row}"].Merge = true;
+                    sheet.Cells[$"B{row}:D{row}"].Style.Font.Bold = false;
+                    sheet.Cells[$"B{row}:D{row}"].Style.Font.Italic = true;
+                    sheet.Cells[$"B{row}:D{row}"].Value = "TOTAL DISCHARGES: ";
+
+                    sheet.Cells[$"E{row}"].Formula = "=SUM(E77:E83)";
+                    sheet.Cells[$"F{row}"].Formula = "=SUM(F77:F83)";
+                    sheet.Cells[$"G{row}"].Formula = "=SUM(G77:G83)";
+                    sheet.Cells[$"H{row}"].Formula = "=SUM(H77:H83)";
+
+
+                    sheet.Cells[$"J{row}"].Formula = "=SUM(J77:J83)";
+                    sheet.Cells[$"K{row}"].Formula = "=SUM(K77:K83)";
+                    sheet.Cells[$"L{row}"].Formula = "=SUM(L77:L83)";
+                    sheet.Cells[$"M{row}"].Formula = "=SUM(M77:M83)";
+
+
+                    sheet.Cells[$"O{row}"].Formula = "=SUM(O77:O83)";
+                    sheet.Cells[$"P{row}"].Formula = "=SUM(P77:P83)";
+                    sheet.Cells[$"Q{row}"].Formula = "=SUM(Q77:Q83)";
+                    sheet.Cells[$"R{row}"].Formula = "=SUM(R77:R83)";
+
+
+                    sheet.Cells[$"T{row}"].Formula = "=SUM(T77:T83)";
+                    sheet.Cells[$"U{row}"].Formula = "=SUM(U77:U83)";
+                    sheet.Cells[$"V{row}"].Formula = "=SUM(V77:V83)";
+                    sheet.Cells[$"W{row}"].Formula = "=SUM(W77:W83)";
+
+                    sheet.Cells[$"I{row}"].Formula = "=SUM(I77:I83)";
+                    sheet.Cells[$"N{row}"].Formula = "=SUM(N77:N83)";
+                    sheet.Cells[$"S{row}"].Formula = "=SUM(S77:S83)";
+                    sheet.Cells[$"X{row}"].Formula = "=SUM(X77:X83)";
+
+
+                    sheet.Cells[$"Y{row}"].Formula = $"=SUM(Y77:Y83)";
+
+                    row++;
+                    ctrLabel++;
+                }
+
+
+                if (row == 89)
+                {
+                    sheet.Cells[$"B{row}:D{row}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+                    sheet.Cells[$"B{row}:Y{row}"].Style.Fill.SetBackground(Color.Gold);
+
+
+                    sheet.Cells[$"B{row}:D{row}"].Merge = true;
+                    sheet.Cells[$"B{row}:D{row}"].Style.Font.Bold = false;
+                    sheet.Cells[$"B{row}:D{row}"].Style.Font.Italic = true;
+                    sheet.Cells[$"B{row}:D{row}"].Value = "TOTAL RESPIRATORY: ";
+
+                    sheet.Cells[$"E{row}"].Formula = "=SUM(E86:E88)";
+                    sheet.Cells[$"F{row}"].Formula = "=SUM(F86:F88)";
+                    sheet.Cells[$"G{row}"].Formula = "=SUM(G86:G88)";
+                    sheet.Cells[$"H{row}"].Formula = "=SUM(H86:H88)";
+
+
+                    sheet.Cells[$"J{row}"].Formula = "=SUM(J86:J88)";
+                    sheet.Cells[$"K{row}"].Formula = "=SUM(K86:K88)";
+                    sheet.Cells[$"L{row}"].Formula = "=SUM(L86:L88)";
+                    sheet.Cells[$"M{row}"].Formula = "=SUM(M86:M88)";
+
+
+                    sheet.Cells[$"O{row}"].Formula = "=SUM(O86:O88)";
+                    sheet.Cells[$"P{row}"].Formula = "=SUM(P86:P88)";
+                    sheet.Cells[$"Q{row}"].Formula = "=SUM(Q86:Q88)";
+                    sheet.Cells[$"R{row}"].Formula = "=SUM(R86:R88)";
+
+
+                    sheet.Cells[$"T{row}"].Formula = "=SUM(T86:T88)";
+                    sheet.Cells[$"U{row}"].Formula = "=SUM(U86:U88)";
+                    sheet.Cells[$"V{row}"].Formula = "=SUM(V86:V88)";
+                    sheet.Cells[$"W{row}"].Formula = "=SUM(W86:W88)";
+
+                    sheet.Cells[$"I{row}"].Formula = "=SUM(I86:I88)";
+                    sheet.Cells[$"N{row}"].Formula = "=SUM(N86:N88)";
+                    sheet.Cells[$"S{row}"].Formula = "=SUM(S86:S88)";
+                    sheet.Cells[$"X{row}"].Formula = "=SUM(X86:X88)";
+
+
+                    sheet.Cells[$"Y{row}"].Formula = $"=SUM(Y86:Y88)";
+
+                    row++;
+                    ctrLabel++;
+                }
+
+                if (tally.IsHeader)
+                {
+                    specimenLabel = $"{ctrLabel}. {specimen}";
+                    sheet.Cells[$"B{row}:D{row}"].Merge = true;
+                    sheet.Cells[$"B{row}:D{row}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+                    sheet.Cells[$"B{row}:Y{row}"].Style.Fill.SetBackground(Color.Yellow);
+                    sheet.Cells[$"B{row}:Y{row}"].Style.Font.Color.SetColor(Color.Red);
+                    sheet.Cells[$"B{row}:D{row}"].Value = specimenLabel;
+                    row++;
+
+                    incrementFactor = 0;
+
+
+                    continue;
+                }
+                else
+                {
+                    if (row >= 73 && row <= 75)
                     {
-                        specimenLabel = "TOTAL RESPIRATORY";
-
-                        sheet.Cells[$"B{row}:D{row}"].Value = specimenLabel;
-                        sheet.Cells[$"B{row}:D{row}"].Style.Font.Bold = false;
-                        sheet.Cells[$"B{row}:D{row}"].Style.Font.Italic = true;
-
-                        sheet.Cells[$"E{row}"].Formula = "=SUM(E72:E73)";
-                        sheet.Cells[$"F{row}"].Formula = "=SUM(F72:F73)";
-                        sheet.Cells[$"G{row}"].Formula = "=SUM(G72:G73)";
-                        sheet.Cells[$"H{row}"].Formula = "=SUM(H72:H73)";
-                        sheet.Cells[$"I{row}"].Formula = "=SUM(I72:I73)";
-
-                        sheet.Cells[$"J{row}"].Formula = "=SUM(J72:J73)";
-                        sheet.Cells[$"K{row}"].Formula = "=SUM(K72:K73)";
-                        sheet.Cells[$"L{row}"].Formula = "=SUM(L72:L73)";
-                        sheet.Cells[$"M{row}"].Formula = "=SUM(M72:M73)";
-                        sheet.Cells[$"N{row}"].Formula = "=SUM(N72:N73)";
-
-                        sheet.Cells[$"O{row}"].Formula = "=SUM(O72:O73)";
-                        sheet.Cells[$"P{row}"].Formula = "=SUM(P72:P73)";
-                        sheet.Cells[$"Q{row}"].Formula = "=SUM(Q72:Q73)";
-                        sheet.Cells[$"R{row}"].Formula = "=SUM(R72:R73)";
-                        sheet.Cells[$"S{row}"].Formula = "=SUM(S72:S73)";
-
-                        sheet.Cells[$"T{row}"].Formula = "=SUM(T72:T73)";
-                        sheet.Cells[$"U{row}"].Formula = "=SUM(U72:U73)";
-                        sheet.Cells[$"V{row}"].Formula = "=SUM(V72:V73)";
-                        sheet.Cells[$"W{row}"].Formula = "=SUM(W72:W73)";
-                        sheet.Cells[$"X{row}"].Formula = "=SUM(X72:X73)";
-
-                        sheet.Cells[$"Y{row}"].Formula = "=SUM(Y72:Y73)";
-                        incrementFactor = 1;
-                        ctrLabel += incrementFactor;
-                        row++;
-                        sheet.Cells[$"B{row}:D{row}"].Merge = true;
-                        row++;
-                        specimenLabel = specimen;
+                        specimenLabel = $"{ctrLabel}. {specimen}";
+                        sheet.Cells[$"B{row}:D{row}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
                     }
+                    else
+                    {
+                        specimenLabel = specimen;
+                        sheet.Cells[$"B{row}:D{row}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                    }
+                }
+
+                if(row == 90)
+                {
+                    sheet.Cells[$"B{row}:D{row}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+                    specimenLabel = $"{ctrLabel}. {specimen}";
                 }
 
                 sheet.Cells[$"B{row}:D{row}"].Merge = true;
@@ -700,38 +855,63 @@ namespace MonthlyReportEntrySoftware.Services
                 sheet.Cells[$"Y{row}"].Formula = $"=SUM(I{row},N{row},S{row},X{row})";
 
                 row++;
+
+                if(row == 91)
+                {
+                    sheet.Cells[$"B{row}:D{row}"].Merge = true;
+                }
+
                 ctrLabel += incrementFactor;
             }
 
             sheet.Cells[$"B{row}:D{row}"].Merge = true;
             row++;
 
-            sheet.Cells["B78:Y78"].Style.Border.BorderAround(ExcelBorderStyle.Thick, Color.Black);
-            sheet.Cells[$"B78:D78"].Merge = true;
-            sheet.Cells[$"B78:D78"].Value = "TOTAL NO OF. CULTURE & SENSI RECEIVED:";
-            sheet.Cells["B78:Y78"].Style.Border.BorderAround(ExcelBorderStyle.Thick, Color.Black);
+            sheet.Cells["B92:Y92"].Style.Border.BorderAround(ExcelBorderStyle.Thick, Color.Black);
+            sheet.Cells[$"B92:D92"].Merge = true;
+            sheet.Cells[$"B92:D92"].Value = "TOTAL NO OF. CULTURE & SENSI RECEIVED:";
+            sheet.Cells["B92:Y92"].Style.Border.BorderAround(ExcelBorderStyle.Thick, Color.Black);
 
-            sheet.Cells["I78"].Formula = "=SUM(I61,I63:I65,I70,I74,I76)";
-            sheet.Cells["N78"].Formula = "=SUM(N61,N63:N65,N70,N74,N76)";
-            sheet.Cells["S78"].Formula = "=SUM(S61,S63:S65,S70,S74,S76)";
-            sheet.Cells["X78"].Formula = "=SUM(X61,X63:X65,X70,X74,X76)";
-            sheet.Cells["Y78"].Formula = "=SUM(Y61,Y63:Y65,Y70,Y74,Y76)";
 
-            sheet.Cells["I78"].Style.Font.Color.SetColor(Color.Red);
-            sheet.Cells["N78"].Style.Font.Color.SetColor(Color.Red);
-            sheet.Cells["S78"].Style.Font.Color.SetColor(Color.Red);
-            sheet.Cells["X78"].Style.Font.Color.SetColor(Color.Red);
-            sheet.Cells["Y78"].Style.Font.Color.SetColor(Color.Purple);
+            sheet.Cells[$"E92"].Formula = "=SUM(E71,E73:E75,E84,E89,E90)";
+            sheet.Cells[$"F92"].Formula = "=SUM(F71,F73:F75,F84,F89,F90)";
+            sheet.Cells["G92"].Formula = "=SUM(G71,G73:G75,G84,G89,G90)";
+            sheet.Cells["H92"].Formula = "=SUM(H71,H73:H75,H84,H89,H90)";
+            sheet.Cells["I92"].Formula = "=SUM(I71,I73:I75,I84,I89,I90)";
+
+            sheet.Cells["J92"].Formula = "=SUM(J71,J73:J75,J84,J89,J90)";
+            sheet.Cells["K92"].Formula = "=SUM(K71,K73:K75,K84,K89,K90)";
+            sheet.Cells["L92"].Formula = "=SUM(L71,L73:L75,L84,L89,L90)";
+            sheet.Cells["M92"].Formula = "=SUM(M71,M73:M75,M84,M89,M90)";
+            sheet.Cells["N92"].Formula = "=SUM(N71,N73:N75,N84,N89,N90)";
+            sheet.Cells["O92"].Formula = "=SUM(O71,O73:O75,O84,O89,O90)";
+            sheet.Cells["P92"].Formula = "=SUM(P71,P73:P75,P84,P89,P90)";
+            sheet.Cells["Q92"].Formula = "=SUM(Q71,Q73:Q75,Q84,Q89,Q90)";
+            sheet.Cells["R92"].Formula = "=SUM(R71,R73:R75,R84,R89,R90)";
+            sheet.Cells["S92"].Formula = "=SUM(S71,S73:S75,S84,S89,S90)";
+            sheet.Cells["T92"].Formula = "=SUM(T71,T73:T75,T84,T89,T90)";
+            sheet.Cells["U92"].Formula = "=SUM(U71,U73:U75,U84,U89,U90)";
+            sheet.Cells["V92"].Formula = "=SUM(V71,V73:V75,V84,V89,V90)";
+            sheet.Cells["W92"].Formula = "=SUM(W71,W73:W75,W84,W89,W90)";
+            sheet.Cells["X92"].Formula = "=SUM(X71,X73:X75,X84,X89,X90)";
+            sheet.Cells["Y92"].Formula = "=SUM(Y71,Y73:Y75,Y84,Y89,Y90)";
+
+            sheet.Cells["I92"].Style.Font.Color.SetColor(Color.Red);
+            sheet.Cells["N92"].Style.Font.Color.SetColor(Color.Red);
+            sheet.Cells["S92"].Style.Font.Color.SetColor(Color.Red);
+            sheet.Cells["X92"].Style.Font.Color.SetColor(Color.Red);
+            sheet.Cells["Y92"].Style.Font.Color.SetColor(Color.Purple);
 
 
             #endregion
 
             #region Other Categories
-            row = 84;
+            row = 98;
 
-            specimens = monthlyReportEntity.TestTallies[1].Skip(3).Select(x => x.CategoryName).ToList();
-            foreach (var specimen in specimens)
+            tallies = monthlyReportEntity.TestTallies[1].Skip(3).Select(x=> new CategoryTally(x.CategoryName)).ToList();
+            foreach (var tally in tallies)
             {
+                var specimen = tally.SpecimenType;
                 sheet.Cells[$"B{row}:D{row}"].Merge = true;
 
                 sheet.Cells[$"B{row}:D{row}"].Value = $"{specimen}";
@@ -766,23 +946,42 @@ namespace MonthlyReportEntrySoftware.Services
                 row++;
             }
 
-            sheet.Cells[$"B88:D88"].Merge = true;
             row++;
-            sheet.Cells[$"B89:D89"].Merge = true;
-            sheet.Cells[$"B89:D89"].Value = "TOTAL NO OF. SPECIMEN RECEIVED:";
-            sheet.Cells["B89:Y89"].Style.Border.BorderAround(ExcelBorderStyle.Thick, Color.Black);
+            sheet.Cells[$"B103:D103"].Merge = true;
 
-            sheet.Cells["I89"].Formula = "=SUM(I84:I87)";
-            sheet.Cells["N89"].Formula = "=SUM(N84:N87)";
-            sheet.Cells["S89"].Formula = "=SUM(S84:S87)";
-            sheet.Cells["X89"].Formula = "=SUM(X84:X87)";
-            sheet.Cells["Y89"].Formula = "=SUM(Y84:Y87)";
+            sheet.Cells[$"B103:D103"].Value = "TOTAL NO OF. SPECIMEN RECEIVED:";
+            sheet.Cells["B103:Y103"].Style.Border.BorderAround(ExcelBorderStyle.Thick, Color.Black);
 
-            sheet.Cells["I89"].Style.Font.Color.SetColor(Color.Red);
-            sheet.Cells["N89"].Style.Font.Color.SetColor(Color.Red);
-            sheet.Cells["S89"].Style.Font.Color.SetColor(Color.Red);
-            sheet.Cells["X89"].Style.Font.Color.SetColor(Color.Red);
-            sheet.Cells["Y89"].Style.Font.Color.SetColor(Color.Purple);
+            sheet.Cells[$"E103"].Formula = "=SUM(E98:E102)";
+            sheet.Cells["F103"].Formula = "=SUM(F98:F102)";
+            sheet.Cells["G103"].Formula = "=SUM(G98:G102)";
+            sheet.Cells["H103"].Formula = "=SUM(H98:H102)";
+            sheet.Cells["I103"].Formula = "=SUM(I98:I102)";
+            sheet.Cells["J103"].Formula = "=SUM(J98:J102)";
+            sheet.Cells["K103"].Formula = "=SUM(K98:K102)";
+            sheet.Cells["L103"].Formula = "=SUM(L98:L102)";
+            sheet.Cells["M103"].Formula = "=SUM(M98:M102)";
+            sheet.Cells["N103"].Formula = "=SUM(N98:N102)";
+            sheet.Cells["O103"].Formula = "=SUM(O98:O102)";
+            sheet.Cells["P103"].Formula = "=SUM(P98:P102)";
+            sheet.Cells["Q103"].Formula = "=SUM(Q98:Q102)";
+            sheet.Cells["R103"].Formula = "=SUM(R98:R102)";
+            sheet.Cells["S103"].Formula = "=SUM(S98:S102)";
+            sheet.Cells["T103"].Formula = "=SUM(T98:T102)";
+            sheet.Cells["U103"].Formula = "=SUM(U98:U102)";
+            sheet.Cells["V103"].Formula = "=SUM(V98:V102)";
+            sheet.Cells["W103"].Formula = "=SUM(W98:W102)";
+            sheet.Cells["X103"].Formula = "=SUM(X98:X102)";
+            sheet.Cells["Y103"].Formula = "=SUM(Y98:Y102)";
+
+
+            sheet.Cells["I98:I103"].Style.Font.Color.SetColor(Color.Red);
+            sheet.Cells["N98:N103"].Style.Font.Color.SetColor(Color.Red);
+            sheet.Cells["S98:S103"].Style.Font.Color.SetColor(Color.Red);
+            sheet.Cells["X98:X103"].Style.Font.Color.SetColor(Color.Red);
+            sheet.Cells["Y98:Y102"].Style.Font.Color.SetColor(Color.Blue);
+
+            sheet.Cells["Y103"].Style.Font.Color.SetColor(Color.Purple);
 
 
             #endregion
@@ -808,53 +1007,51 @@ namespace MonthlyReportEntrySoftware.Services
             sheet.Cells["A5:C5"].Value = "Total Specimen Performed";
             sheet.Cells["A5:C5"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
 
-            sheet.Cells["A22:C23,A39:C40,A50:C51"].Style.Font.Bold = true;
-            sheet.Cells["A22:C23,A39:C40,A50:C51"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
 
 
-            sheet.Cells["D4:H5,D8:H21,D23:H38,D40:H49,D51:H57"].Style.Border.Top.Style = ExcelBorderStyle.Thin;
-            sheet.Cells["D4:H5,D8:H21,D23:H38,D40:H49,D51:H57"].Style.Border.Top.Color.SetColor(Color.Black);
+            sheet.Cells["D4:H5,D8:H21,D25:H46,D49:H57,D61:H66"].Style.Border.Top.Style = ExcelBorderStyle.Thin;
+            sheet.Cells["D4:H5,D8:H21,D25:H46,D49:H57,D61:H66"].Style.Border.Top.Color.SetColor(Color.Black);
 
-            sheet.Cells["D4:H5,D8:H21,D23:H38,D40:H49,D51:H57"].Style.Border.Left.Style = ExcelBorderStyle.Thin;
-            sheet.Cells["D4:H5,D8:H21,D23:H38,D40:H49,D51:H57"].Style.Border.Left.Color.SetColor(Color.Black);
+            sheet.Cells["D4:H5,D8:H21,D25:H46,D49:H57,D61:H66"].Style.Border.Left.Style = ExcelBorderStyle.Thin;
+            sheet.Cells["D4:H5,D8:H21,D25:H46,D49:H57,D61:H66"].Style.Border.Left.Color.SetColor(Color.Black);
 
-            sheet.Cells["D4:H5,D8:H21,D23:H38,D40:H49,D51:H57"].Style.Border.Right.Style = ExcelBorderStyle.Thin;
-            sheet.Cells["D4:H5,D8:H21,D23:H38,D40:H49,D51:H57"].Style.Border.Right.Color.SetColor(Color.Black);
+            sheet.Cells["D4:H5,D8:H21,D25:H46,D49:H57,D61:H66"].Style.Border.Right.Style = ExcelBorderStyle.Thin;
+            sheet.Cells["D4:H5,D8:H21,D25:H46,D49:H57,D61:H66"].Style.Border.Right.Color.SetColor(Color.Black);
 
-            sheet.Cells["D4:H5,D8:H21,D23:H38,D40:H49,D51:H57"].Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
-            sheet.Cells["D4:H5,D8:H21,D23:H38,D40:H49,D51:H57"].Style.Border.Bottom.Color.SetColor(Color.Black);
+            sheet.Cells["D4:H5,D8:H21,D25:H46,D49:H57,D61:H66"].Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+            sheet.Cells["D4:H5,D8:H21,D25:H46,D49:H57,D61:H66"].Style.Border.Bottom.Color.SetColor(Color.Black);
 
-            sheet.Cells["D3,D7,D23,D40,D51"].Value = "IP";
-            sheet.Cells["E3,E7,E23,E40,E51"].Value = "ER";
-            sheet.Cells["F3,F7,F23,F40,F51"].Value = "MAGS";
-            sheet.Cells["G3,G7,G23,G40,G51"].Value = "OPD";
-            sheet.Cells["H3,H7,H23,H40,H51"].Value = "TOTAL";
-
-
-            sheet.Cells["D3:H58"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-            sheet.Cells["H3:H5,H7:H21,H23:H38,H40:H49,H51:H57"].Style.Font.Bold = true;
-
-            sheet.Cells["D3:H3,D7:H7,D23:H23,D40:H40,D51:H51"].Style.Border.BorderAround(ExcelBorderStyle.Medium, Color.Black);
+            sheet.Cells["D3,D7,D24,D48,D60"].Value = "IP";
+            sheet.Cells["E3,E7,E24,E48,E60"].Value = "ER";
+            sheet.Cells["F3,F7,F24,F48,F60"].Value = "MAGS";
+            sheet.Cells["G3,G7,G24,G48,G60"].Value = "OPD";
+            sheet.Cells["H3,H7,H24,H48,H60"].Value = "TOTAL";
 
 
-            sheet.Cells["A8:C8"].Style.Font.Bold = true;
-            sheet.Cells["A8:C8"].Merge = true;
-            sheet.Cells["A8:C8"].Value = "AFB";
-            sheet.Cells["A8:C8"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+            sheet.Cells["D3:H68"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+            sheet.Cells["H3:H5,H7:H22,H24:H46,H48:H57,H60:H67"].Style.Font.Bold = true;
+
+            sheet.Cells["D3:H3,D7:H7,D24:H24,D48:H48,D60:H60"].Style.Border.BorderAround(ExcelBorderStyle.Medium, Color.Black);
+
+
+            sheet.Cells["A7:C8"].Style.Font.Bold = true;
+            sheet.Cells["A7:C8"].Merge = true;
+            sheet.Cells["A7:C8"].Value = "AFB";
+            sheet.Cells["A7:C8"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
 
             int row = 9;
             int refRow = 5;
 
             #region AFB
             var aggregateSpecimen = monthlyReportEntity.TestTallies[1][0].CategoryTallies.Select(x => x.SpecimenType).ToList();
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < 13; i++)
             {
                 sheet.Cells[$"A{row}:C{row}"].Merge = true;
 
-                if (i == 11)
+                if (i == 12)
                 {
 
-                    refRow = 24;
+                    refRow = 26;
                     sheet.Cells[$"A{row}:C{row}"].Value = $"{i + 1}. OTHERS";
 
                     sheet.Cells[$"D{row}"].Formula = $"=SUM(WEEKLY!E{refRow}, WEEKLY!J{refRow}, WEEKLY!O{refRow}, WEEKLY!T{refRow})";
@@ -865,12 +1062,31 @@ namespace MonthlyReportEntrySoftware.Services
 
                     row++;
 
-                    sheet.Cells[$"D{row}"].Formula = $"=SUM(D9:D20)";
-                    sheet.Cells[$"E{row}"].Formula = $"=SUM(E9:E20)";
-                    sheet.Cells[$"F{row}"].Formula = $"=SUM(F9:F20)";
-                    sheet.Cells[$"G{row}"].Formula = $"=SUM(G9:G20)";
-                    sheet.Cells[$"H{row}"].Formula = $"=SUM(H9:H20)";
+                    sheet.Cells[$"A{row}:C{row}"].Merge = true;
+                    sheet.Cells[$"A{row}:C{row}"].Value = "TOTAL";
+                    sheet.Cells[$"A{row}:C{row}"].Style.Font.Bold = true;
+
+                    sheet.Cells[$"D{row}"].Formula = $"=SUM(D9:D21)";
+                    sheet.Cells[$"E{row}"].Formula = $"=SUM(E9:E21)";
+                    sheet.Cells[$"F{row}"].Formula = $"=SUM(F9:F21)";
+                    sheet.Cells[$"G{row}"].Formula = $"=SUM(G9:G21)";
+                    sheet.Cells[$"H{row}"].Formula = $"=SUM(H9:H21)";
                     sheet.Cells[$"H{row}"].Style.Font.Color.SetColor(Color.Red);
+                    sheet.Cells[$"H{row}"].Style.Font.Bold = true;
+
+                    sheet.Cells[$"A{row}:H{row}"].Style.Border.Top.Style = ExcelBorderStyle.Thin;
+                    sheet.Cells[$"A{row}:H{row}"].Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+                    sheet.Cells[$"A{row}:H{row}"].Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                    sheet.Cells[$"A{row}:H{row}"].Style.Border.Right.Style = ExcelBorderStyle.Thin;
+                    sheet.Cells[$"A{row}:H{row}"].Style.Border.Top.Color.SetColor(Color.Black);
+                    sheet.Cells[$"A{row}:H{row}"].Style.Border.Bottom.Color.SetColor(Color.Black);
+                    sheet.Cells[$"A{row}:H{row}"].Style.Border.Left.Color.SetColor(Color.Black);
+                    sheet.Cells[$"A{row}:H{row}"].Style.Border.Right.Color.SetColor(Color.Black);
+
+                    sheet.Cells[$"A{row}:C{row}"].Value = $"TOTAL";
+                    sheet.Cells[$"A{row}:C{row}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+
+
 
                 }
                 else
@@ -892,15 +1108,17 @@ namespace MonthlyReportEntrySoftware.Services
             #endregion
 
             #region GS
-            row = 24;
-            refRow = 32;
+            row = 26;
+            refRow = 34;
 
-            sheet.Cells[$"A22:C23"].Merge = true;
-            sheet.Cells[$"A22:C22"].Value = "GRAM STAINING";
-            sheet.Cells[$"A23:C23"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+            sheet.Cells[$"A24:C25"].Merge = true;
+            sheet.Cells[$"A24:C25"].Value = "GRAM STAINING";
+            sheet.Cells[$"A24:C24"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+            sheet.Cells[$"A24:C24"].Style.Font.Bold = true;
+
 
             aggregateSpecimen = monthlyReportEntity.TestTallies[1][1].CategoryTallies.Select(x => x.SpecimenType).ToList();
-            for (int i = 0; i < 14; i++)
+            for (int i = 0; i < 20; i++)
             {
                 sheet.Cells[$"A{row}:C{row}"].Merge = true;
 
@@ -913,17 +1131,33 @@ namespace MonthlyReportEntrySoftware.Services
                 sheet.Cells[$"G{row}"].Formula = $"=SUM(WEEKLY!H{refRow}, WEEKLY!M{refRow}, WEEKLY!R{refRow}, WEEKLY!W{refRow})";
                 sheet.Cells[$"H{row}"].Formula = $"=SUM(D{row}:G{row})";
 
-                if (i == 13)
+                if (i == 19)
                 {
 
                     row++;
-                    sheet.Cells[$"D{row}"].Formula = $"=SUM(D24:D37)";
-                    sheet.Cells[$"E{row}"].Formula = $"=SUM(E24:E37)";
-                    sheet.Cells[$"F{row}"].Formula = $"=SUM(F24:F37)";
-                    sheet.Cells[$"G{row}"].Formula = $"=SUM(G24:G37)";
-                    sheet.Cells[$"H{row}"].Formula = $"=SUM(H24:H37)";
+                    sheet.Cells[$"D{row}"].Formula = $"=SUM(D26:D45)";
+                    sheet.Cells[$"E{row}"].Formula = $"=SUM(E26:E45)";
+                    sheet.Cells[$"F{row}"].Formula = $"=SUM(F26:F45)";
+                    sheet.Cells[$"G{row}"].Formula = $"=SUM(G26:G45)";
+                    sheet.Cells[$"H{row}"].Formula = $"=SUM(H26:H45)";
                     sheet.Cells[$"H{row}"].Style.Font.Color.SetColor(Color.Red);
 
+
+                    sheet.Cells[$"H{row}"].Style.Font.Color.SetColor(Color.Red);
+                    sheet.Cells[$"H{row}"].Style.Font.Bold = true;
+
+                    sheet.Cells[$"A{row}:H{row}"].Style.Border.Top.Style = ExcelBorderStyle.Thin;
+                    sheet.Cells[$"A{row}:H{row}"].Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+                    sheet.Cells[$"A{row}:H{row}"].Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                    sheet.Cells[$"A{row}:H{row}"].Style.Border.Right.Style = ExcelBorderStyle.Thin;
+                    sheet.Cells[$"A{row}:H{row}"].Style.Border.Top.Color.SetColor(Color.Black);
+                    sheet.Cells[$"A{row}:H{row}"].Style.Border.Bottom.Color.SetColor(Color.Black);
+                    sheet.Cells[$"A{row}:H{row}"].Style.Border.Left.Color.SetColor(Color.Black);
+                    sheet.Cells[$"A{row}:H{row}"].Style.Border.Right.Color.SetColor(Color.Black);
+
+                    sheet.Cells[$"A{row}:C{row}"].Merge = true;
+                    sheet.Cells[$"A{row}:C{row}"].Value = $"TOTAL";
+                    sheet.Cells[$"A{row}:C{row}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                 }
 
                 refRow++;
@@ -934,12 +1168,12 @@ namespace MonthlyReportEntrySoftware.Services
 
             #region C/S
 
-            row = 41;
-            refRow = 32;
+            row = 50;
 
-            sheet.Cells[$"A39:C40"].Merge = true;
-            sheet.Cells[$"A39:C39"].Value = "CULTURE AND SENSITIVITY";
-            sheet.Cells[$"A23:C23"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+            sheet.Cells[$"A48:C49"].Merge = true;
+            sheet.Cells[$"A48:C49"].Value = "CULTURE AND SENSITIVITY";
+            sheet.Cells[$"A48:C49"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+            sheet.Cells[$"A48:C49"].Style.Font.Bold = true;
 
             for (int i = 0; i < 7; i++)
             {
@@ -949,34 +1183,31 @@ namespace MonthlyReportEntrySoftware.Services
                 switch (i + 1)
                 {
                     case 1:
-                        refRow = 61;
+                        refRow = 71;
                         specimenLabel = "CSF,AF,DF";
                         break;
                     case 2:
-                        refRow = 63;
+                        refRow = 73;
                         specimenLabel = "RECTAL SWAB/STOOL";
                         break;
                     case 3:
-                        refRow = 64;
+                        refRow = 74;
                         specimenLabel = "URINE";
                         break;
                     case 4:
-                        refRow = 65;
+                        refRow = 75;
                         specimenLabel = "BLOOD";
                         break;
                     case 5:
-                        refRow = 70;
+                        refRow = 84;
                         specimenLabel = "WOUND/ABSCESS";
                         break;
                     case 6:
-                        refRow = 74;
+                        refRow = 89;
                         specimenLabel = "RESPIRATORY DISCHARGE";
                         break;
                     case 7:
-
-                        row++;
-                        sheet.Cells[$"A{row}:C{row}"].Merge = true;
-                        refRow = 76;
+                        refRow = 90;
                         specimenLabel = "ENVIRONMENTAL CULTURE";
                         break;
                 }
@@ -994,27 +1225,30 @@ namespace MonthlyReportEntrySoftware.Services
                 refRow++;
                 row++;
             }
+
             sheet.Cells[$"A{row}:C{row}"].Merge = true;
-            sheet.Cells[$"D{row}"].Formula = $"=SUM(D41:D48)";
-            sheet.Cells[$"E{row}"].Formula = $"=SUM(E41:E48)";
-            sheet.Cells[$"F{row}"].Formula = $"=SUM(F41:F48)";
-            sheet.Cells[$"G{row}"].Formula = $"=SUM(G41:G48)";
-            sheet.Cells[$"H{row}"].Formula = $"=SUM(H41:H48)";
-            sheet.Cells[$"H{row}"].Style.Font.Color.SetColor(Color.Red);
+            sheet.Cells[$"D{row}"].Formula = $"=SUM(D50:D56)";
+            sheet.Cells[$"E{row}"].Formula = $"=SUM(E50:E56)";
+            sheet.Cells[$"F{row}"].Formula = $"=SUM(F50:F56)";
+            sheet.Cells[$"G{row}"].Formula = $"=SUM(G50:G56)";
+            sheet.Cells[$"H{row}"].Formula = $"=SUM(H50:H56)";
 
             sheet.Cells[$"H{row}"].Style.Font.Color.SetColor(Color.Red);
-
+            sheet.Cells[$"H{row}"].Style.Font.Bold = true;
+            sheet.Cells[$"A{row}:H{row}"].Style.Border.BorderAround(ExcelBorderStyle.Thin, Color.Black);
+            sheet.Cells[$"A{row}:C{row}"].Value = $"TOTAL";
+            sheet.Cells[$"A{row}:C{row}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
             #endregion
 
             #region Other Categories 
 
 
-            row = 52;
-            refRow = 84;
+            row = 61;
+            refRow = 98;
 
-            sheet.Cells[$"A50:C51"].Merge = true;
-            sheet.Cells[$"A50:C51"].Value = "";
-            sheet.Cells[$"A50:C51"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+            sheet.Cells[$"A59:C60"].Merge = true;
+            sheet.Cells[$"A59:C60"].Value = "";
+            sheet.Cells[$"A59:C60"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
 
             aggregateSpecimen = monthlyReportEntity.TestTallies[1].Skip(3).Select(x => x.CategoryName).ToList();
             for (int i = 0; i < aggregateSpecimen.Count; i++)
@@ -1036,14 +1270,16 @@ namespace MonthlyReportEntrySoftware.Services
             }
 
             sheet.Cells[$"A{row}:C{row}"].Merge = true;
-            row++;
-            sheet.Cells[$"D{row}"].Formula = $"=SUM(D52:D55)";
-            sheet.Cells[$"E{row}"].Formula = $"=SUM(E52:E55)";
-            sheet.Cells[$"F{row}"].Formula = $"=SUM(F52:F55)";
-            sheet.Cells[$"G{row}"].Formula = $"=SUM(G52:G55)";
-            sheet.Cells[$"H{row}"].Formula = $"=SUM(H52:H55)";
+            sheet.Cells[$"D{row}"].Formula = $"=SUM(D61:D65)";
+            sheet.Cells[$"E{row}"].Formula = $"=SUM(E61:E65)";
+            sheet.Cells[$"F{row}"].Formula = $"=SUM(F61:F65)";
+            sheet.Cells[$"G{row}"].Formula = $"=SUM(G61:G65)";
+            sheet.Cells[$"H{row}"].Formula = $"=SUM(H61:H65)";
             sheet.Cells[$"H{row}"].Style.Font.Color.SetColor(Color.Red);
-
+            sheet.Cells[$"H{row}"].Style.Font.Bold = true;
+            sheet.Cells[$"A{row}:H{row}"].Style.Border.BorderAround(ExcelBorderStyle.Thin, Color.Black);
+            sheet.Cells[$"A{row}:C{row}"].Value = $"TOTAL";
+            sheet.Cells[$"A{row}:C{row}"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
 
             #endregion  
 
@@ -1057,54 +1293,64 @@ namespace MonthlyReportEntrySoftware.Services
             sheet.Cells["I12"].Value = "OPD";
 
 
-            sheet.Cells["J23"].Value = "TAT GS";
-            sheet.Cells["I24"].Value = "IP";
-            sheet.Cells["I25"].Value = "ER";
-            sheet.Cells["I26"].Value = "MAGS";
-            sheet.Cells["I27"].Value = "OPD";
+            sheet.Cells["J25"].Value = "TAT GS";
+            sheet.Cells["I26"].Value = "IP";
+            sheet.Cells["I27"].Value = "ER";
+            sheet.Cells["I28"].Value = "MAGS";
+            sheet.Cells["I29"].Value = "OPD";
 
 
-            sheet.Cells["J40"].Value = "TAT CS";
-            sheet.Cells["I41"].Value = "IP";
-            sheet.Cells["I42"].Value = "ER";
-            sheet.Cells["I43"].Value = "MAGS";
-            sheet.Cells["I44"].Value = "OPD";
+            sheet.Cells["J49"].Value = "TAT CS";
+            sheet.Cells["I50"].Value = "IP";
+            sheet.Cells["I51"].Value = "ER";
+            sheet.Cells["I52"].Value = "MAGS";
+            sheet.Cells["I53"].Value = "OPD";
 
 
-            sheet.Cells["J51"].Value = "TAT HUMAN MILK CULTURE";
-            sheet.Cells["I52"].Value = "IP";
+            sheet.Cells["J60"].Value = "TAT HUMAN MILK CULTURE";
+            sheet.Cells["I61"].Value = "IP";
 
-            sheet.Cells["J53"].Value = "TAT GEN X";
-            sheet.Cells["I54"].Value = "IP";
-            sheet.Cells["I55"].Value = "ER";
-            sheet.Cells["I56"].Value = "MAGS";
-            sheet.Cells["I57"].Value = "OPD";
+            sheet.Cells["J62"].Value = "TAT GEN X";
+            sheet.Cells["I63"].Value = "IP";
+            sheet.Cells["I64"].Value = "ER";
+            sheet.Cells["I65"].Value = "MAGS";
+            sheet.Cells["I66"].Value = "OPD";
+
             sheet.Cells["I1:I100"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
 
 
 
-            sheet.Cells["J58"].Value = "TAT KOH";
-            sheet.Cells["I59"].Value = "IP";
-            sheet.Cells["I60"].Value = "ER";
-            sheet.Cells["I61"].Value = "MAGS";
-            sheet.Cells["I62"].Value = "OPD";
+            sheet.Cells["J68"].Value = "TAT KOH";
+            sheet.Cells["I69"].Value = "IP";
+            sheet.Cells["I70"].Value = "ER";
+            sheet.Cells["I71"].Value = "MAGS";
+            sheet.Cells["I72"].Value = "OPD";
 
 
 
-            sheet.Cells["J63"].Value = "TAT INDIA INK";
-            sheet.Cells["I64"].Value = "IP";
-            sheet.Cells["I65"].Value = "ER";
-            sheet.Cells["I66"].Value = "MAGS";
-            sheet.Cells["I67"].Value = "OPD";
+            sheet.Cells["J73"].Value = "TAT INDIA INK";
+            sheet.Cells["I74"].Value = "IP";
+            sheet.Cells["I75"].Value = "ER";
+            sheet.Cells["I76"].Value = "MAGS";
+            sheet.Cells["I77"].Value = "OPD";
+
+
+
+            sheet.Cells["J78"].Value = "TAT XDR";
+            sheet.Cells["I79"].Value = "IP";
+            sheet.Cells["I80"].Value = "ER";
+            sheet.Cells["I81"].Value = "MAGS";
+            sheet.Cells["I82"].Value = "OPD";
 
             sheet.Cells["J3"].Style.Font.Bold = true;
             sheet.Cells["J8"].Style.Font.Bold = true;
-            sheet.Cells["J23"].Style.Font.Bold = true;
-            sheet.Cells["J40"].Style.Font.Bold = true;
-            sheet.Cells["J51"].Style.Font.Bold = true;
-            sheet.Cells["J53"].Style.Font.Bold = true;
-            sheet.Cells["J58"].Style.Font.Bold = true;
-            sheet.Cells["J63"].Style.Font.Bold = true;
+            sheet.Cells["J25"].Style.Font.Bold = true;
+            sheet.Cells["J49"].Style.Font.Bold = true;
+            sheet.Cells["J60"].Style.Font.Bold = true;
+            sheet.Cells["J62"].Style.Font.Bold = true;
+            sheet.Cells["J68"].Style.Font.Bold = true;
+            sheet.Cells["J73"].Style.Font.Bold = true;
+            sheet.Cells["J78"].Style.Font.Bold = true;
 
 
             sheet.Calculate();

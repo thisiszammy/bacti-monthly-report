@@ -14,6 +14,7 @@ namespace MonthlyReportEntrySoftware.Entities.BaseEntities
         HM = 3,
         GE = 4,
         KOH = 5,
-        INDIA = 6
+        INDIA = 6,
+        XDR = 7
     }
 }

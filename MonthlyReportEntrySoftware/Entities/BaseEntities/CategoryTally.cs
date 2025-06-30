@@ -15,9 +15,12 @@ namespace MonthlyReportEntrySoftware.Entities.BaseEntities
         public int OPD { get; set; }
         public int Total { get => IP + ER + MAGS + OPD; }
 
-        public CategoryTally(string SpecimenType)
+        public bool IsHeader { get; set; }
+
+        public CategoryTally(string SpecimenType, bool isHeader = false)
         {
             this.SpecimenType = SpecimenType;
+            IsHeader = isHeader;
             IP = 0;
             ER = 0;
             MAGS = 0;

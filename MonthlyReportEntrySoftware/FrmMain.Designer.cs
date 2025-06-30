@@ -34,8 +34,8 @@ namespace MonthlyReportEntrySoftware
             this.btnSetFilePath = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnMonthlyReport = new System.Windows.Forms.Button();
             this.btnLoadFromFile = new System.Windows.Forms.Button();
+            this.btnMonthlyReport = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,25 +85,25 @@ namespace MonthlyReportEntrySoftware
             this.panel1.Size = new System.Drawing.Size(400, 100);
             this.panel1.TabIndex = 7;
             // 
-            // btnMonthlyReport
-            // 
-            this.btnMonthlyReport.Location = new System.Drawing.Point(11, 18);
-            this.btnMonthlyReport.Name = "btnMonthlyReport";
-            this.btnMonthlyReport.Size = new System.Drawing.Size(183, 62);
-            this.btnMonthlyReport.TabIndex = 1;
-            this.btnMonthlyReport.Text = "CREATE NEW MONTHLY REPORT";
-            this.btnMonthlyReport.UseVisualStyleBackColor = true;
-            this.btnMonthlyReport.Click += new System.EventHandler(this.btnMonthlyReport_Click);
-            // 
             // btnLoadFromFile
             // 
             this.btnLoadFromFile.Location = new System.Drawing.Point(204, 18);
             this.btnLoadFromFile.Name = "btnLoadFromFile";
-            this.btnLoadFromFile.Size = new System.Drawing.Size(183, 62);
+            this.btnLoadFromFile.Size = new System.Drawing.Size(181, 62);
             this.btnLoadFromFile.TabIndex = 2;
             this.btnLoadFromFile.Text = "LOAD MONTHLY REPORT FROM EXCEL FILE";
             this.btnLoadFromFile.UseVisualStyleBackColor = true;
             this.btnLoadFromFile.Click += new System.EventHandler(this.btnLoadFromFile_Click);
+            // 
+            // btnMonthlyReport
+            // 
+            this.btnMonthlyReport.Location = new System.Drawing.Point(11, 18);
+            this.btnMonthlyReport.Name = "btnMonthlyReport";
+            this.btnMonthlyReport.Size = new System.Drawing.Size(187, 62);
+            this.btnMonthlyReport.TabIndex = 1;
+            this.btnMonthlyReport.Text = "CREATE NEW MONTHLY REPORT";
+            this.btnMonthlyReport.UseVisualStyleBackColor = true;
+            this.btnMonthlyReport.Click += new System.EventHandler(this.btnMonthlyReport_Click);
             // 
             // FrmMain
             // 
